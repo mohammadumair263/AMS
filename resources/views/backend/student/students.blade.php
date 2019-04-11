@@ -7,7 +7,7 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Students</h1>
-        <a href="add-student.html" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus fa-sm text-white-50"></i> Add Student</a>
+        <a href="{{route('addStudent')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus fa-sm text-white-50"></i> Add Student</a>
     </div>
 
     <!-- DataTales Example -->
@@ -46,9 +46,9 @@
                         <td>Infant</td>
                         <td>50%</td>
                         <td>
-                            <a href="student-details.html" class="btn btn-primary btn-sm"><i class="far fa-fw fa-list-alt"></i></a>
+                            <a href="{{route('studentDetails')}}" class="btn btn-primary btn-sm"><i class="far fa-fw fa-list-alt"></i></a>
                             &nbsp;
-                            <a href="edit-student.html" class="btn btn-warning btn-sm"><i class="far fa-edit"></i></a>
+                            <a href="{{route('editStudent')}}" class="btn btn-warning btn-sm"><i class="far fa-edit"></i></a>
                             &nbsp;
                             <a href="" class="btn btn-danger btn-sm"><i class="far fa-fw fa-trash-alt"></i></a>
                         </td>
