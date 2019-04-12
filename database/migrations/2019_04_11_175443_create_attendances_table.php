@@ -17,6 +17,7 @@ class CreateAttendanceTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('student_id');
             $table->bigInteger('teacher_id');
+            $table->string('status');
             $table->date('date_for');
             // $table->timestamps();
         });

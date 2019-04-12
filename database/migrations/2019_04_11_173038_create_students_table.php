@@ -17,6 +17,7 @@ class CreateStudentsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('class_id');
             $table->string('name', 100);
+            $table->string('roll_no', 100);
             $table->string('email')->unique();
             $table->string('phone', 20);
             $table->string('password');
