@@ -9,6 +9,7 @@
             <h6 class="m-0 font-weight-bold text-primary">Add Student Form</h6>
         </div>
         <div class="card-body">
+
             <form action="{{route('saveStudent')}}" method="POST">
                 {{ csrf_field() }}
                 <div class="row">
@@ -22,6 +23,7 @@
                     </div>
                     <div class="col-md-2"></div>
                 </div>
+
                 <br>
                 <div class="row">
                     <div class="col-md-2"></div>
@@ -50,6 +52,20 @@
                     </div>
                     <div class="form-group col-sm-12 col-md-4">
                         <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="form-group col-sm-12 col-md-4">
+                        <label for="class">Select class:</label>
+                        <select class="form-control" name="class" id="class">
+                            <option value="a">Class A</option>
+                            <option value="a">Class B</option>
+                            <option value="a">Class C</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-sm-12 col-md-4">
                     </div>
                     <div class="col-md-2"></div>
                 </div>
