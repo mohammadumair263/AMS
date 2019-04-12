@@ -9,7 +9,8 @@
             <h6 class="m-0 font-weight-bold text-primary">Add Student Form</h6>
         </div>
         <div class="card-body">
-            <form action="#" method="POST">
+            <form action="{{route('saveStudent')}}" method="POST">
+                {{ csrf_field() }}
                 <div class="row">
                     <div class="col-md-2"></div>
                     <div class="col-sm-12 col-md-4">

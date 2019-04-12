@@ -14,15 +14,15 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('
-', function () {
+Route::get('admin/home', function () {
     return view('backend.index');
 });
 
 // Students and Attendance routes at backend side
 Route::get('/admin/students', 'Backend\StudentController@index')->name('students');
-Route::get('/admin/student-details', 'Backend\StudentController@show')->name('studentDetails');
 Route::get('/admin/sdd-student', 'Backend\StudentController@create')->name('addStudent');
+Route::post('/admin/save-student', 'Backend\StudentController@store')->name('saveStudent');
+Route::get('/admin/student-details', 'Backend\StudentController@show')->name('studentDetails');
 Route::get('/admin/edit-student', 'Backend\StudentController@edit')->name('editStudent');
 Route::get('/admin/attendance', 'Backend\StudentController@attendance')->name('attendance');
 Route::get('/admin/mark-attendance', 'Backend\StudentController@markAttendance')->name('markAttendance');
