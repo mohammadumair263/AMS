@@ -37,6 +37,11 @@ Route::get('/admin/classes', 'Backend\ClassController@index')->name('classes');
 Route::get('/admin/add-class', 'Backend\ClassController@create')->name('addClass');
 Route::get('/admin/edit-class', 'Backend\ClassController@edit')->name('editClass');
 
-// Teacher routes at front end
+// Students routes at frontend
 Route::get('/student/index', 'Frontend\StudentController@index')->name('dashboard');
 Route::get('/student/profile', 'Frontend\StudentController@edit')->name('profile');
+
+// Teachers routes at frontend
+Route::get('/teacher/index', 'Frontend\TeacherController@index')->name('dashboard');
+Route::get('/teacher/take-attendance', 'Frontend\TeacherController@attendance')->name('markAttendance');
+Route::get('/teacher/profile', 'Frontend\TeacherController@edit')->name('profile');
