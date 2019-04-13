@@ -25,6 +25,7 @@
                         <th>Roll No</th>
                         <th>Class</th>
                         <th>Attendance</th>
+                        <th>Image</th>
                         <th>Action</th>
                     </tr>
                     </thead>
@@ -35,6 +36,7 @@
                         <td>{{$student->name}}</td>
                         <td>{{$student->roll_no}}</td>
                         <td>{{$student->class_id}}</td>
+                        <td><img src="{{asset('backend/uploads/'.$student->image)}}" alt="picture"}} style="height: 25%;"></td>
                         <td>50%</td>
                         <td>
                             <a href="{{route('studentDetails')}}" class="btn btn-primary btn-sm"><i class="far fa-fw fa-list-alt"></i></a>

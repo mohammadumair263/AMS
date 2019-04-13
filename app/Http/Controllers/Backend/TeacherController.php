@@ -63,6 +63,7 @@ class TeacherController extends Controller
         {
             $fileNameToStore = 'noimage.jpeg';
         }
+
         $teacher = new Teacher;
 
         $teacher->name = $request->name;

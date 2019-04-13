@@ -25,6 +25,7 @@
                         <th>Email</th>
                         <th>Phone</th>
                         <th>Class</th>
+                        <th>Image</th>
                         <th>Action</th>
                     </tr>
                     </thead>
@@ -37,6 +38,7 @@
                         <td>{{$teacher->email}}</td>
                         <td>{{$teacher->phone}}</td>
                         <td>Class A</td>
+                        <td><img src="{{asset('backend/uploads/'.$teacher->image)}}" alt="picture"}} style="height: 25%;"></td>
                         <td>
                             <a href="{{route('editTeacher',['id' => $teacher->id])}}" class="btn btn-warning btn-sm"><i class="far fa-fw fa-edit"></i></a>
                             &nbsp;
