@@ -15,7 +15,7 @@
                 <div class="row">
                     <div class="col-md-2"></div>
                     <div class="col-sm-12 col-md-4">
-                        <img src="{{asset('img/avatar.png')}}" class="img-fluid img-thumbnail mx-auto d-block" alt="profile picture" style="height:150px; width:200px;">
+                        <img src="" class="img-fluid img-thumbnail mx-auto d-block" alt="profile picture" style="height:150px; width:200px;">
                     </div>
                     <div class="form-group col-sm-12 col-md-4">
                         <br><br><br>
@@ -27,6 +27,7 @@
                 <div class="row">
                     <div class="col-md-2"></div>
                     <div class="form-group col-sm-12 col-md-8">
+                        <label for="name">Full Name:</label>
                         <input type="text" class="form-control" id="fname" placeholder="Enter Full Name" name="name" value="{{$student->name}}">
                     </div>
                     <div class="col-md-2"></div>
@@ -34,9 +35,11 @@
                 <div class="row">
                     <div class="col-md-2"></div>
                     <div class="form-group col-sm-12 col-md-4">
+                        <label for="roll_no">Roll No:</label>
                         <input type="text" class="form-control" id="roll_no" placeholder="Enter Roll No" name="roll_no" value="{{$student->roll_no}}">
                     </div>
                     <div class="form-group col-sm-12 col-md-4">
+                        <label for="phone">Phone No:</label>
                         <input type="text" class="form-control" id="phone_no" placeholder="Enter Phone No" name="phone_no" value="{{$student->phone}}">
                     </div>
                     <div class="col-md-2"></div>
@@ -44,10 +47,12 @@
                 <div class="row">
                     <div class="col-md-2"></div>
                     <div class="form-group col-sm-12 col-md-4">
+                        <label for="email">Email:</label>
                         <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" value="{{$student->email}}">
                     </div>
                     <div class="form-group col-sm-12 col-md-4">
-                        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd" value="{{$student->password}}">
+                        <label for="password">Password:</label>
+                        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password" value="{{$student->password}}">
                     </div>
                     <div class="col-md-2"></div>
                 </div>
