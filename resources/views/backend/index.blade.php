@@ -19,7 +19,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Students (Registered)</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"> 40 </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"> {{$students}} </div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-users fa-2x text-gray-300"></i>
@@ -36,7 +36,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Teachers (Registered)</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"> 8 </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"> {{$teachers}} </div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-user-friends fa-2x text-gray-300"></i>
@@ -53,7 +53,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Classes</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"> 5 </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"> {{$classes}} </div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-school fa-2x text-gray-300"></i>

@@ -24,6 +24,11 @@ class StudentController extends Controller
         }
     }
 
+    public function logout(){
+        Session::flush();
+        return redirect('/student/login');
+    }
+
     public function showLoginForm()
     {
         return view('frontend.student.login');
@@ -56,7 +61,9 @@ class StudentController extends Controller
     public function edit()
     {
         if(!empty(session('id')) && session('role') == 'student'){
-            return view('frontend.student.profile');
+
+            $student = Student::where('id',session('id'))->first();
+            return view('frontend.student.profile')->with('student',$student);
         }
         else{
             return redirect('/student/login');

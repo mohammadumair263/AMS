@@ -18,12 +18,24 @@
             </a>
             <!-- Dropdown - User Information -->
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="{{route('profile')}}">
+                @if (session('role') == 'admin')
+                    <a class="dropdown-item" href="{{url('/admin/profile')}}">
+                @elseif (session('role') == 'student')
+                    <a class="dropdown-item" href="{{url('/student/profile')}}">
+                @elseif (session('role') == 'teacher')
+                    <a class="dropdown-item" href="{{url('/teacher/profile')}}">
+                @endif
                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                     Profile
                 </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="{{url('/admin/logout')}}">
+                @if (session('role') == 'admin')
+                    <a class="dropdown-item" href="{{url('/admin/logout')}}">
+                @elseif (session('role') == 'student')
+                    <a class="dropdown-item" href="{{url('/student/logout')}}">
+                @elseif (session('role') == 'teacher')
+                    <a class="dropdown-item" href="{{url('/teacher/logout')}}">
+                @endif
                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                     Logout
                 </a>

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Models\Admin;
+use App\Models\Teacher;
+use App\Models\Classes;
+use App\Models\Student;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
@@ -12,8 +15,15 @@ class AdminController extends Controller
     public function index()
     {
         if(!empty(session('id')) && session('role') == 'admin'){
-            
-            return view('backend.index');
+            $classes = Classes::all();
+            $teachers = Teacher::all();
+            $students = Student::all();
+
+            return view('backend.index',[
+                'teachers'=> $teachers->count(),
+                'classes'=> $classes->count(),
+                'students'=> $students->count()
+                ]);
         }
         else{
             return redirect('/admin/login');

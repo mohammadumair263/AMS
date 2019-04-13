@@ -48,6 +48,11 @@ class TeacherController extends Controller
         }
     }
 
+    public function logout(){
+        Session::flush();
+        return redirect('/teacher/login');
+    }
+
     public function attendance(){
         if(!empty(session('id')) && session('role') == 'teacher'){
             return view('frontend.teacher.attendance');
@@ -65,7 +70,9 @@ class TeacherController extends Controller
     public function edit()
     {
         if(!empty(session('id')) && session('role') == 'teacher'){
-            return view('frontend.teacher.profile');
+
+            $teacher = Teacher::where('id',session('id'))->first();
+            return view('frontend.teacher.profile')->with('teacher',$teacher);
         }
         else{
             return redirect('/teacher/login');

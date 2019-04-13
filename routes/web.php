@@ -49,6 +49,7 @@ Route::get('/student/index', 'Frontend\StudentController@index')->name('dashboar
 Route::get('/student/profile', 'Frontend\StudentController@edit')->name('profile');
 Route::get('/student/login', 'Frontend\StudentController@showLoginForm');
 Route::post('/student/login', 'Frontend\StudentController@login');
+Route::get('/student/logout', 'Frontend\StudentController@logout');
 
 // Teachers routes at frontend
 Route::get('/teacher/index', 'Frontend\TeacherController@index')->name('dashboard');
@@ -56,3 +57,4 @@ Route::get('/teacher/take-attendance', 'Frontend\TeacherController@attendance')-
 Route::get('/teacher/profile', 'Frontend\TeacherController@edit')->name('profile');
 Route::get('/teacher/login', 'Frontend\TeacherController@showLoginForm');
 Route::post('/teacher/login', 'Frontend\TeacherController@login');
+Route::get('/teacher/logout', 'Frontend\TeacherController@logout');
