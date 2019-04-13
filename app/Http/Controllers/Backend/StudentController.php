@@ -52,13 +52,11 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'fname' => 'required|max:255',
-            'lname' => 'required|max:255',
+            'name' => 'required|max:255',
             'roll_no' => 'required',
             'phone_no' => 'required',
-            'class' => 'required',
             'email' => 'required|string|email|max:255',
-            'pwd' => 'required|min:6',
+            'password' => 'required|min:6',
             'image' => 'max:1999'
         ]);
 
@@ -82,13 +80,12 @@ class StudentController extends Controller
         }
         $student = new Student;
 
-        $student->name = $request->fname. ' ' .$request->lname;
+        $student->name = $request->name;
         $student->image = $fileNameToStore;
         $student->roll_no = $request->roll_no;
-        $student->class_id = $request->class;
         $student->email = $request->email;
         $student->phone = $request->phone_no;
-        $student->password = $request->pwd;
+        $student->password = $request->password;
 
         $student->save();
         return redirect()->back();
@@ -139,7 +136,45 @@ class StudentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:255',
+            'roll_no' => 'required',
+            'phone_no' => 'required',
+            'email' => 'required|string|email|max:255',
+            'password' => 'required|min:6',
+            'image' => 'max:1999'
+        ]);
+
+        //make unique name for image, and directory path directory
+        if(($request->hasFile('image')))
+        {
+            //get file with extension
+            $fileNameWithExt = $request->file('image')->getClientOriginalName();
+            //get just file name
+            $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+            //get just ext
+            $extension = $request->file('image')->getClientOriginalExtension();
+            //file to store
+            $fileNameToStore = $fileName . '_' . time() . '.' . $extension;
+            //upload file
+            $path = $request->file('image')->move('backend/uploads ', $fileNameToStore);
+        }
+        else
+        {
+            $fileNameToStore = 'noimage.jpeg';
+        }
+
+        $student = Student::where('id', $request->id)->first();
+
+        $student->name = $request->name;
+        $student->image = $fileNameToStore;
+        $student->roll_no = $request->roll_no;
+        $student->email = $request->email;
+        $student->phone = $request->phone_no;
+        $student->password = $request->password;
+
+        $student->save();
+        return redirect()->back();
     }
 
     /**

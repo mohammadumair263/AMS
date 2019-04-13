@@ -9,8 +9,9 @@
             <h6 class="m-0 font-weight-bold text-danger">Student Details</h6>
         </div>
         <div class="card-body">
-            <form action="#" method="POST">
-                @csrf
+            <form action="{{route('updateStudent', ['student_id' => $student->id])}}" method="POST">
+                {{ csrf_field() }}
+                {{ method_field('PUT') }}
                 <input type="hidden" value="{{$student->id}}" name="id" />
                 <div class="row">
                     <div class="col-md-2"></div>
@@ -28,7 +29,7 @@
                     <div class="col-md-2"></div>
                     <div class="form-group col-sm-12 col-md-8">
                         <label for="name">Full Name:</label>
-                        <input type="text" class="form-control" id="fname" placeholder="Enter Full Name" name="name" value="{{$student->name}}">
+                        <input type="text" class="form-control" id="name" placeholder="Enter Full Name" name="name" value="{{$student->name}}">
                     </div>
                     <div class="col-md-2"></div>
                 </div>

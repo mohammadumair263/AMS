@@ -28,6 +28,7 @@ Route::get('/admin/sdd-student', 'Backend\StudentController@create')->name('addS
 Route::post('/admin/save-student', 'Backend\StudentController@store')->name('saveStudent');
 Route::get('/admin/student-details/{id}', 'Backend\StudentController@show')->name('studentDetails');
 Route::get('/admin/edit-student/{id}', 'Backend\StudentController@edit')->name('editStudent');
+Route::PUT('/admin/update-student/{id}', 'Backend\StudentController@update')->name('updateStudent');
 Route::get('/admin/attendance', 'Backend\StudentController@attendance')->name('attendance');
 Route::get('/admin/mark-attendance', 'Backend\StudentController@markAttendance')->name('markAttendance');
 
