@@ -43,6 +43,20 @@
                     </div>
                     <div class="col-md-2"></div>
                 </div>
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="form-group col-sm-12 col-md-4">
+                        <label for="class">Select class:</label>
+                        <select class="form-control" name="class" id="class">
+                            @foreach ($classes as $class)
+                                <option value="{{$class->id}}">{{$class->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group col-sm-12 col-md-4">
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
                 <br>
                 <div class="row">
                     <div class="col-md-9 col-sm-12"></div>

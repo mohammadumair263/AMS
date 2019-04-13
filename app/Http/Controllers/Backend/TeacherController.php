@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Models\Classes;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -34,8 +35,10 @@ class TeacherController extends Controller
      */
     public function create()
     {
-        if(!empty(session('id')) && session('role') == 'admin'){
-            return view('backend.teacher.add-teacher');
+        if(!empty(session('id')) && session('role') == 'admin')
+        {
+            $classes = Classes::all();
+            return view('backend.teacher.add-teacher')->with('classes', $classes);
         }
         else{
             return redirect('/admin/login');
@@ -53,6 +56,7 @@ class TeacherController extends Controller
         $request->validate([
             'name' => 'required|max:255',
             'phone_no' => 'required',
+            'class' => 'required',
             'email' => 'required|string|email|max:255',
             'pwd' => 'required|min:6',
             'image' => 'max:1999'
@@ -83,6 +87,7 @@ class TeacherController extends Controller
         $teacher->image = $fileNameToStore;
         $teacher->email = $request->email;
         $teacher->phone = $request->phone_no;
+        $teacher->class_id = $request->class;
         $teacher->password = $request->pwd;
         $teacher->save();
         return redirect()->back();
@@ -128,6 +133,7 @@ class TeacherController extends Controller
         $request->validate([
             'name' => 'required|max:255',
             'phone_no' => 'required',
+            'class' => 'required',
             'email' => 'required|string|email|max:255',
             'password' => 'required|min:6',
             'image' => 'max:1999'
@@ -158,6 +164,7 @@ class TeacherController extends Controller
         $teacher->image = $fileNameToStore;
         $teacher->email = $request->email;
         $teacher->phone = $request->phone_no;
+        $teacher->class_id = $request->class;
         $teacher->password = $request->password;
 
         $teacher->save();

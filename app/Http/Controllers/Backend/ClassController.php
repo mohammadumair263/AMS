@@ -16,8 +16,10 @@ class ClassController extends Controller
      */
     public function index()
     {
-        if(!empty(session('id')) && session('role') == 'admin'){
-            return view('backend.class.classes');
+        if(!empty(session('id')) && session('role') == 'admin')
+        {
+            $class = Classes::all();
+            return view('backend.class.classes')->with('classes', $class);
         }
         else{
             return redirect('/admin/login');

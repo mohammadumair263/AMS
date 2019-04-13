@@ -28,21 +28,11 @@
                         <th>Action</th>
                     </tr>
                     </thead>
-                    <tfoot>
+                    @foreach($classes as $class)
                     <tr>
-                        <th> # </th>
-                        <th>Name</th>
-                        <th>Teacher</th>
-                        <th>Students</th>
-                        <th>Attendance</th>
-                        <th>Action</th>
-                    </tr>
-                    </tfoot>
-                    <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Class A</td>
-                        <td>John Doe</td>
+                        <td>{{$class->id}}</td>
+                        <td>{{$class->name}}</td>
+                        <td>{{$class->name}}</td>
                         <td>10</td>
                         <td>80%</td>
                         <td>
@@ -51,43 +41,7 @@
                             <a href="" class="btn btn-danger btn-sm"><i class="far fa-fw fa-trash-alt"></i></a>
                         </td>
                     </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Class B</td>
-                        <td>John Doe</td>
-                        <td>12</td>
-                        <td>80%</td>
-                        <td>
-                            <a href="class-details.html" class="btn btn-warning btn-sm"><i class="far fa-edit"></i></a>
-                            &nbsp;
-                            <a href="" class="btn btn-danger btn-sm"><i class="far fa-fw fa-trash-alt"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Class C</td>
-                        <td>John Doe</td>
-                        <td>10</td>
-                        <td>80%</td>
-                        <td>
-                            <a href="class-details.html" class="btn btn-warning btn-sm"><i class="far fa-edit"></i></a>
-                            &nbsp;
-                            <a href="" class="btn btn-danger btn-sm"><i class="far fa-fw fa-trash-alt"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Class D</td>
-                        <td>John Doe</td>
-                        <td>12</td>
-                        <td>80%</td>
-                        <td>
-                            <a href="class-details.html" class="btn btn-warning btn-sm"><i class="far fa-edit"></i></a>
-                            &nbsp;
-                            <a href="" class="btn btn-danger btn-sm"><i class="far fa-fw fa-trash-alt"></i></a>
-                        </td>
-                    </tr>
-                    </tbody>
+                    @endforeach
                 </table>
             </div>
         </div>

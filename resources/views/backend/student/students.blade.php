@@ -35,7 +35,7 @@
                         <td>{{$student->id}}</td>
                         <td>{{$student->name}}</td>
                         <td>{{$student->roll_no}}</td>
-                        <td>Class</td>
+                        <td>{{$student->class->name}}</td>
                         <td>50%</td>
                         <td><img src="{{asset('backend/uploads/'.$student->image)}}" alt="picture"}} style="height: 22%;"></td>
                         <td>

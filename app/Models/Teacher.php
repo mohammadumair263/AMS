@@ -28,4 +28,8 @@ class Teacher extends Authenticatable
     protected $hidden = [
         'password',
     ];
+
+    public  function class(){
+        return $this->hasOne(Classes::class);
+    }
 }
