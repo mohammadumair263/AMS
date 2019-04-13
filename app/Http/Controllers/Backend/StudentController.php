@@ -185,7 +185,15 @@ class StudentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if(!empty(session('id')) && session('role') == 'admin'){
+            $student= Student::find($id);
+            $student->delete();
+
+            return redirect()->back();
+        }
+        else{
+            return redirect('/admin/login');
+        }
     }
 
     public function attendance()

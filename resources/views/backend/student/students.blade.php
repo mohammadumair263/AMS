@@ -43,7 +43,7 @@
                             &nbsp;
                             <a href="{{url('/admin/edit-student').'/'.$student->id}}" class="btn btn-warning btn-sm"><i class="far fa-edit"></i></a>
                             &nbsp;
-                            <a href="{{url('/admin/edit-student').'/'.$student->id}}" class="btn btn-danger btn-sm"><i class="far fa-fw fa-trash-alt"></i></a>
+                            <a href="{{route('deleteStudent', ['id' => $student->id])}}" class="btn btn-danger btn-sm"><i class="far fa-fw fa-trash-alt"></i></a>
                         </td>
                     </tr>
                     @endforeach
