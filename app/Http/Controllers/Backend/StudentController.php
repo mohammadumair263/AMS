@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Models\Student;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,7 +15,8 @@ class StudentController extends Controller
      */
     public function index()
     {
-        return view('backend.student.students');
+        $student = Student::all();
+        return view('backend.student.students')->with('students', $student);
     }
 
     /**
@@ -35,7 +37,27 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        $request->validate([
+            'fname' => 'required|max:255',
+            'lname' => 'required|max:255',
+            'roll_no' => 'required',
+            'phone_no' => 'required',
+            'email' => 'required|string|email|max:255',
+            'pwd' => 'required|min:6'
+        ]);
+
+        $student = new Student;
+
+        $student->fname = $request->fname;
+        $student->lname = $request->lname;
+        $student->roll_no = $request->roll_no;
+        $student->email = $request->email;
+        $student->phone = $request->phone_no;
+        $student->password = $request->pwd;
+
+        $student->save();
+        return redirect()->back();
+
     }
 
     /**

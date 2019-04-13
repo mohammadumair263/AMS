@@ -10,7 +10,7 @@
         </div>
         <div class="card-body">
 
-            <form action="{{route('saveStudent')}}" method="POST">
+            <form action="{{route('saveStudent')}}" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="row">
                     <div class="col-md-2"></div>
