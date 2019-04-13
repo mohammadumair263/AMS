@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,7 +15,8 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        return view('backend.teacher.teachers');
+        $teacher = Teacher::all();
+        return view('backend.teacher.teachers')->with('teachers', $teacher);
     }
 
     /**
@@ -35,7 +37,42 @@ class TeacherController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:255',
+            'phone_no' => 'required',
+            'email' => 'required|string|email|max:255',
+            'pwd' => 'required|min:6',
+            'image' => 'max:1999'
+        ]);
+
+        //make unique name for image, and directory path directory
+        if(($request->hasFile('image')))
+        {
+            //get file with extension
+            $fileNameWithExt = $request->file('image')->getClientOriginalName();
+            //get just file name
+            $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+            //get just ext
+            $extension = $request->file('image')->getClientOriginalExtension();
+            //file to store
+            $fileNameToStore = $fileName . '_' . time() . '.' . $extension;
+            //upload file
+            $path = $request->file('image')->move('backend/uploads ', $fileNameToStore);
+        }
+        else
+        {
+            $fileNameToStore = 'noimage.jpeg';
+        }
+        $teacher = new Teacher;
+
+        $teacher->name = $request->name;
+        $teacher->image = $fileNameToStore;
+        $teacher->email = $request->email;
+        $teacher->phone = $request->phone_no;
+        $teacher->password = $request->pwd;
+
+        $teacher->save();
+        return redirect()->back();
     }
 
     /**
@@ -55,9 +92,10 @@ class TeacherController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit() // $id
+    public function edit($id)
     {
-        return view('backend.teacher.edit-teacher');
+        $teacher = Teacher::find($id);
+        return view('backend.teacher.edit-teacher')->with('teacher', $teacher);
     }
 
     /**
@@ -69,7 +107,43 @@ class TeacherController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:255',
+            'phone_no' => 'required',
+            'email' => 'required|string|email|max:255',
+            'pwd' => 'required|min:6',
+            'image' => 'max:1999'
+        ]);
+
+        //make unique name for image, and directory path directory
+        if(($request->hasFile('image')))
+        {
+            //get file with extension
+            $fileNameWithExt = $request->file('image')->getClientOriginalName();
+            //get just file name
+            $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+            //get just ext
+            $extension = $request->file('image')->getClientOriginalExtension();
+            //file to store
+            $fileNameToStore = $fileName . '_' . time() . '.' . $extension;
+            //upload file
+            $path = $request->file('image')->move('backend/uploads ', $fileNameToStore);
+        }
+        else
+        {
+            $fileNameToStore = 'noimage.jpeg';
+        }
+
+        $teacher = Teacher::where('id', $request->id)->first();
+
+        $teacher->name = $request->name;
+        $teacher->image = $fileNameToStore;
+        $teacher->email = $request->email;
+        $teacher->phone = $request->phone_no;
+        $teacher->password = $request->pwd;
+
+        $teacher->save();
+        return redirect()->back();
     }
 
     /**
@@ -80,6 +154,9 @@ class TeacherController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $teacher= Teacher::find($id);
+        $teacher->delete();
+
+        return redirect()->back();
     }
 }

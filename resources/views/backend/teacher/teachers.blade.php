@@ -29,155 +29,21 @@
                     </tr>
                     </thead>
                     <tfoot>
-                    <tr>
-                        <th> # </th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Class</th>
-                        <th>Action</th>
-                    </tr>
-                    </tfoot>
                     <tbody>
+                    @foreach($teachers as $teacher)
                     <tr>
-                        <td>1</td>
-                        <td>Johnathan</td>
-                        <td>abc@xyz.com</td>
-                        <td>1111111111</td>
+                        <td>{{$teacher->id}}</td>
+                        <td>{{$teacher->name}}</td>
+                        <td>{{$teacher->email}}</td>
+                        <td>{{$teacher->phone}}</td>
                         <td>Class A</td>
                         <td>
-                            <a href="{{route('editTeacher')}}" class="btn btn-warning btn-sm"><i class="far fa-fw fa-edit"></i></a>
+                            <a href="{{route('editTeacher',['id' => $teacher->id])}}" class="btn btn-warning btn-sm"><i class="far fa-fw fa-edit"></i></a>
                             &nbsp;
-                            <a href="" class="btn btn-danger btn-sm"><i class="far fa-fw fa-trash-alt"></i></a>
+                            <a href="{{route('deleteTeacher', ['id' => $teacher->id])}}" class="btn btn-danger btn-sm"><i class="far fa-fw fa-trash-alt"></i></a>
                         </td>
                     </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Johnathan</td>
-                        <td>abc@xyz.com</td>
-                        <td>1111111111</td>
-                        <td>Class B</td>
-                        <td>
-                            <a href="teacher-details.html" class="btn btn-warning btn-sm"><i class="far fa-fw fa-edit"></i></a>
-                            &nbsp;
-                            <a href="" class="btn btn-danger btn-sm"><i class="far fa-fw fa-trash-alt"></i></a>
-                        </td>
-                    </tr>
-                    <td>3</td>
-                    <td>Johnathan</td>
-                    <td>abc@xyz.com</td>
-                    <td>1111111111</td>
-                    <td>Class A</td>
-                    <td>
-                        <a href="teacher-details.html" class="btn btn-warning btn-sm"><i class="far fa-fw fa-edit"></i></a>
-                        &nbsp;
-                        <a href="" class="btn btn-danger btn-sm"><i class="far fa-fw fa-trash-alt"></i></a>
-                    </td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Johnathan</td>
-                        <td>abc@xyz.com</td>
-                        <td>1111111111</td>
-                        <td>Class B</td>
-                        <td>
-                            <a href="teacher-details.html" class="btn btn-warning btn-sm"><i class="far fa-fw fa-edit"></i></a>
-                            &nbsp;
-                            <a href="" class="btn btn-danger btn-sm"><i class="far fa-fw fa-trash-alt"></i></a>
-                        </td>
-                    </tr>
-                    <td>5</td>
-                    <td>Johnathan</td>
-                    <td>abc@xyz.com</td>
-                    <td>1111111111</td>
-                    <td>Class A</td>
-                    <td>
-                        <a href="teacher-details.html" class="btn btn-warning btn-sm"><i class="far fa-fw fa-edit"></i></a>
-                        &nbsp;
-                        <a href="" class="btn btn-danger btn-sm"><i class="far fa-fw fa-trash-alt"></i></a>
-                    </td>
-                    </tr>
-                    <tr>
-                        <td>6</td>
-                        <td>Johnathan</td>
-                        <td>abc@xyz.com</td>
-                        <td>1111111111</td>
-                        <td>Class B</td>
-                        <td>
-                            <a href="teacher-details.html" class="btn btn-warning btn-sm"><i class="far fa-fw fa-edit"></i></a>
-                            &nbsp;
-                            <a href="" class="btn btn-danger btn-sm"><i class="far fa-fw fa-trash-alt"></i></a>
-                        </td>
-                    </tr>
-                    <td>7</td>
-                    <td>Johnathan</td>
-                    <td>abc@xyz.com</td>
-                    <td>1111111111</td>
-                    <td>Class A</td>
-                    <td>
-                        <a href="teacher-details.html" class="btn btn-warning btn-sm"><i class="far fa-fw fa-edit"></i></a>
-                        &nbsp;
-                        <a href="" class="btn btn-danger btn-sm"><i class="far fa-fw fa-trash-alt"></i></a>
-                    </td>
-                    </tr>
-                    <tr>
-                        <td>8</td>
-                        <td>Johnathan</td>
-                        <td>abc@xyz.com</td>
-                        <td>1111111111</td>
-                        <td>Class B</td>
-                        <td>
-                            <a href="teacher-details.html" class="btn btn-warning btn-sm"><i class="far fa-fw fa-edit"></i></a>
-                            &nbsp;
-                            <a href="" class="btn btn-danger btn-sm"><i class="far fa-fw fa-trash-alt"></i></a>
-                        </td>
-                    </tr>
-                    <td>9</td>
-                    <td>Johnathan</td>
-                    <td>abc@xyz.com</td>
-                    <td>1111111111</td>
-                    <td>Class A</td>
-                    <td>
-                        <a href="teacher-details.html" class="btn btn-warning btn-sm"><i class="far fa-fw fa-edit"></i></a>
-                        &nbsp;
-                        <a href="" class="btn btn-danger btn-sm"><i class="far fa-fw fa-trash-alt"></i></a>
-                    </td>
-                    </tr>
-                    <tr>
-                        <td>10</td>
-                        <td>Johnathan</td>
-                        <td>abc@xyz.com</td>
-                        <td>1111111111</td>
-                        <td>Class B</td>
-                        <td>
-                            <a href="teacher-details.html" class="btn btn-warning btn-sm"><i class="far fa-fw fa-edit"></i></a>
-                            &nbsp;
-                            <a href="" class="btn btn-danger btn-sm"><i class="far fa-fw fa-trash-alt"></i></a>
-                        </td>
-                    </tr>
-                    <td>11</td>
-                    <td>Johnathan</td>
-                    <td>abc@xyz.com</td>
-                    <td>1111111111</td>
-                    <td>Class A</td>
-                    <td>
-                        <a href="teacher-details.html" class="btn btn-warning btn-sm"><i class="far fa-fw fa-edit"></i></a>
-                        &nbsp;
-                        <a href="" class="btn btn-danger btn-sm"><i class="far fa-fw fa-trash-alt"></i></a>
-                    </td>
-                    </tr>
-                    <tr>
-                        <td>12</td>
-                        <td>Johnathan</td>
-                        <td>abc@xyz.com</td>
-                        <td>1111111111</td>
-                        <td>Class B</td>
-                        <td>
-                            <a href="teacher-details.html" class="btn btn-warning btn-sm"><i class="far fa-fw fa-edit"></i></a>
-                            &nbsp;
-                            <a href="" class="btn btn-danger btn-sm"><i class="far fa-fw fa-trash-alt"></i></a>
-                        </td>
-                    </tr>
+                    @endforeach
                     </tbody>
                 </table>
             </div>

@@ -9,15 +9,27 @@
             <h6 class="m-0 font-weight-bold text-primary">Add Teacher Form</h6>
         </div>
         <div class="card-body">
-            <form action="#" method="POST">
+            <form action="{{route('saveTeacher')}}" method="POST" enctype="multipart/form-data">
+                {{ csrf_field() }}
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-sm-12 col-md-4">
+                        <img src="img/class.jpg" class="img-fluid img-thumbnail mx-auto d-block" alt="profile picture" style="height:150px; width:200px;">
+                    </div>
+                    <div class="form-group col-sm-12 col-md-4">
+                        <br><br><br>
+                        <input type="file" accept="image/*" name="image">
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
                 <br>
                 <div class="row">
                     <div class="col-md-2"></div>
                     <div class="form-group col-sm-12 col-md-4">
-                        <input type="text" class="form-control" id="fname" placeholder="Enter First Name" name="fname">
+                        <input type="text" class="form-control" id="fname" placeholder="Enter Full Name" name="name">
                     </div>
                     <div class="form-group col-sm-12 col-md-4">
-                        <input type="text" class="form-control" id="lname" placeholder="Enter Last Name" name="lname">
+                        <input type="text" class="form-control" id="phone_no" placeholder="Enter Phone No" name="phone_no">
                     </div>
                     <div class="col-md-2"></div>
                 </div>
@@ -28,15 +40,6 @@
                     </div>
                     <div class="form-group col-sm-12 col-md-4">
                         <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
-                    </div>
-                    <div class="col-md-2"></div>
-                </div>
-                <div class="row">
-                    <div class="col-md-2"></div>
-                    <div class="form-group col-sm-12 col-md-4">
-                        <input type="text" class="form-control" id="phone_no" placeholder="Enter Phone No" name="phone_no">
-                    </div>
-                    <div class="form-group col-sm-12 col-md-4">
                     </div>
                     <div class="col-md-2"></div>
                 </div>

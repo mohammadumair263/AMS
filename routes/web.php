@@ -32,7 +32,10 @@ Route::get('/admin/mark-attendance', 'Backend\StudentController@markAttendance')
 // Teachers routes at backend side
 Route::get('/admin/teachers', 'Backend\TeacherController@index')->name('teachers');
 Route::get('/admin/add-teacher', 'Backend\TeacherController@create')->name('addTeacher');
-Route::get('/admin/edit-teacher', 'Backend\TeacherController@edit')->name('editTeacher');
+Route::post('/admin/save-teacher', 'Backend\TeacherController@store')->name('saveTeacher');
+Route::get('/admin/edit-teacher/{id}', 'Backend\TeacherController@edit')->name('editTeacher');
+Route::PUT('/admin/update-teacher/{id}', 'Backend\TeacherController@update')->name('updateTeacher');
+Route::get('/admin/delete-teacher/{id}', 'Backend\TeacherController@destroy')->name('deleteTeacher');
 
 // Classes routes at backend side
 Route::get('/admin/classes', 'Backend\ClassController@index')->name('classes');

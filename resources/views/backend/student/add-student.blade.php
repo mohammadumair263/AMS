@@ -19,7 +19,7 @@
                     </div>
                     <div class="form-group col-sm-12 col-md-4">
                         <br><br><br>
-                        <input type="file" accept="image/*" name="file">
+                        <input type="file" accept="image/*" name="image">
                     </div>
                     <div class="col-md-2"></div>
                 </div>
@@ -60,9 +60,9 @@
                     <div class="form-group col-sm-12 col-md-4">
                         <label for="class">Select class:</label>
                         <select class="form-control" name="class" id="class">
-                            <option value="a">Class A</option>
-                            <option value="a">Class B</option>
-                            <option value="a">Class C</option>
+                            <option value="1">Class A</option>
+                            <option value="2">Class B</option>
+                            <option value="3">Class C</option>
                         </select>
                     </div>
                     <div class="form-group col-sm-12 col-md-4">

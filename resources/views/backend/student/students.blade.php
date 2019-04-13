@@ -32,9 +32,9 @@
                     @foreach($students as $student)
                     <tr>
                         <td>{{$student->id}}</td>
-                        <td>{{$student->fname}}</td>
+                        <td>{{$student->name}}</td>
                         <td>{{$student->roll_no}}</td>
-                        <td>Infant</td>
+                        <td>{{$student->class_id}}</td>
                         <td>50%</td>
                         <td>
                             <a href="{{route('studentDetails')}}" class="btn btn-primary btn-sm"><i class="far fa-fw fa-list-alt"></i></a>
