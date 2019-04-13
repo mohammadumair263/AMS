@@ -14,7 +14,12 @@ class ClassController extends Controller
      */
     public function index()
     {
-        return view('backend.class.classes');
+        if(!empty(session('id')) && session('role') == 'admin'){
+            return view('backend.class.classes');
+        }
+        else{
+            return redirect('/admin/login');
+        }
     }
 
     /**
@@ -24,7 +29,12 @@ class ClassController extends Controller
      */
     public function create()
     {
-        return view('backend.class.add-class');
+        if(!empty(session('id')) && session('role') == 'admin'){
+            return view('backend.class.add-class');
+        }
+        else{
+            return redirect('/admin/login');
+        }
     }
 
     /**
@@ -57,7 +67,12 @@ class ClassController extends Controller
      */
     public function edit() // $id here
     {
-        return view('backend.class.edit-class');
+        if(!empty(session('id')) && session('role') == 'admin'){
+            return view('backend.class.edit-class');
+        }
+        else{
+            return redirect('/admin/login');
+        }
     }
 
     /**

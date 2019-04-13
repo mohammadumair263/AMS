@@ -27,11 +27,8 @@
                 <br>
                 <div class="row">
                     <div class="col-md-2"></div>
-                    <div class="form-group col-sm-12 col-md-4">
-                        <input type="text" class="form-control" id="fname" placeholder="Enter First Name" name="fname">
-                    </div>
-                    <div class="form-group col-sm-12 col-md-4">
-                        <input type="text" class="form-control" id="lname" placeholder="Enter Last Name" name="lname">
+                    <div class="form-group col-sm-12 col-md-8">
+                        <input type="text" class="form-control" id="fname" placeholder="Enter Full Name" name="name">
                     </div>
                     <div class="col-md-2"></div>
                 </div>

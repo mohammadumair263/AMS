@@ -10,7 +10,7 @@
         </div>
         <div class="card-body">
             <form action="{{route('saveTeacher')}}" method="POST" enctype="multipart/form-data">
-                {{ csrf_field() }}
+                @csrf
                 <div class="row">
                     <div class="col-md-2"></div>
                     <div class="col-sm-12 col-md-4">

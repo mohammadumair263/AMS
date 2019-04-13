@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Backend;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 
 class TeacherController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -15,8 +17,14 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        $teacher = Teacher::all();
-        return view('backend.teacher.teachers')->with('teachers', $teacher);
+        if(!empty(session('id')) && session('role') == 'admin'){
+            
+            $teacher = Teacher::all();
+            return view('backend.teacher.teachers')->with('teachers', $teacher);
+        }
+        else{
+            return redirect('/admin/login');
+        }
     }
 
     /**
@@ -26,7 +34,12 @@ class TeacherController extends Controller
      */
     public function create()
     {
-        return view('backend.teacher.add-teacher');
+        if(!empty(session('id')) && session('role') == 'admin'){
+            return view('backend.teacher.add-teacher');
+        }
+        else{
+            return redirect('/admin/login');
+        }
     }
 
     /**
@@ -71,7 +84,7 @@ class TeacherController extends Controller
         $teacher->email = $request->email;
         $teacher->phone = $request->phone_no;
         $teacher->password = $request->pwd;
-
+        dd($teacher);
         $teacher->save();
         return redirect()->back();
     }
@@ -95,8 +108,13 @@ class TeacherController extends Controller
      */
     public function edit($id)
     {
-        $teacher = Teacher::find($id);
-        return view('backend.teacher.edit-teacher')->with('teacher', $teacher);
+        if(!empty(session('id')) && session('role') == 'admin'){
+            $teacher = Teacher::find($id);
+            return view('backend.teacher.edit-teacher')->with('teacher', $teacher);
+        }
+        else{
+            return redirect('/admin/login');
+        }
     }
 
     /**
@@ -155,9 +173,14 @@ class TeacherController extends Controller
      */
     public function destroy($id)
     {
-        $teacher= Teacher::find($id);
-        $teacher->delete();
+        if(!empty(session('id')) && session('role') == 'admin'){
+            $teacher= Teacher::find($id);
+            $teacher->delete();
 
-        return redirect()->back();
+            return redirect()->back();
+        }
+        else{
+            return redirect('/admin/login');
+        }
     }
 }

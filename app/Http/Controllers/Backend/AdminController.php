@@ -5,12 +5,19 @@ namespace App\Http\Controllers\Backend;
 use App\Models\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 
 class AdminController extends Controller
 {
     public function index()
     {
-        return view('backend.index');
+        if(!empty(session('id')) && session('role') == 'admin'){
+            
+            return view('backend.index');
+        }
+        else{
+            return redirect('/admin/login');
+        }
     }
 
     public function showLoginForm()
@@ -28,11 +35,17 @@ class AdminController extends Controller
         if(!empty($user)){
             session(['id' => $user->id]);
             session(['name' => $user->name]);
+            session(['role' => 'admin']);
             return redirect('/admin/index');
         }else{
             echo 'not login';
         }
         // dd($request);
+    }
+
+    public function logout(){
+        Session::flush();
+        return redirect('/admin/login');
     }
 
     /**

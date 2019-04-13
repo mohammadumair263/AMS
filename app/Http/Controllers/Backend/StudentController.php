@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Models\Student;
+use App\Models\Classes;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -15,8 +16,13 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $student = Student::all();
-        return view('backend.student.students')->with('students', $student);
+        if(!empty(session('id')) && session('role') == 'admin'){
+            $student = Student::all();
+            return view('backend.student.students')->with('students', $student);
+        }
+        else{
+            return redirect('/admin/login');
+        }
     }
 
     /**
@@ -26,7 +32,12 @@ class StudentController extends Controller
      */
     public function create()
     {
-        return view('backend.student.add-student');
+        if(!empty(session('id')) && session('role') == 'admin'){
+            return view('backend.student.add-student');
+        }
+        else{
+            return redirect('/admin/login');
+        }
     }
 
     /**
@@ -87,9 +98,15 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {
-        return view('backend.student.student-details');
+        if(!empty(session('id')) && session('role') == 'admin'){
+            $student = Student::where('id', $id)->first();
+            return view('backend.student.student-details')->with('student', $student);
+        }
+        else{
+            return redirect('/admin/login');
+        }
     }
 
     /**
@@ -98,9 +115,16 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function edit($id)
     {
-        return view('backend.student.edit-student');
+        if(!empty(session('id')) && session('role') == 'admin'){
+            $student = Student::where('id', $id)->first();
+            $classes = Classes::all();
+            return view('backend.student.edit-student')->with('student', $student);
+        }
+        else{
+            return redirect('/admin/login');
+        }
     }
 
     /**
@@ -128,11 +152,21 @@ class StudentController extends Controller
 
     public function attendance()
     {
-        return view('backend.student.attendance');
+        if(!empty(session('id')) && session('role') == 'admin'){
+            return view('backend.student.attendance');
+        }
+        else{
+            return redirect('/admin/login');
+        }
     }
 
     public function markAttendance()
     {
-        return view('backend.student.mark-attendance');
+        if(!empty(session('id')) && session('role') == 'admin'){
+            return view('backend.student.mark-attendance');
+        }
+        else{
+            return redirect('/admin/login');
+        }
     }
 }

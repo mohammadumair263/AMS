@@ -19,16 +19,25 @@
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
-                    <tr>
-                        <th> # </th>
-                        <th>Name</th>
-                        <th>Roll No</th>
-                        <th>Class</th>
-                        <th>Attendance</th>
-                        <th>Image</th>
-                        <th>Action</th>
-                    </tr>
+                        <tr>
+                            <th> # </th>
+                            <th>Name</th>
+                            <th>Roll No</th>
+                            <th>Class</th>
+                            <th>Attendance</th>
+                            <th>Action</th>
+                        </tr>
                     </thead>
+                    <tfoot>
+                        <tr>
+                            <th> # </th>
+                            <th>Name</th>
+                            <th>Roll No</th>
+                            <th>Class</th>
+                            <th>Attendance</th>
+                            <th>Action</th>
+                        </tr>
+                    </tfoot>
                     <tbody>
                     @foreach($students as $student)
                     <tr>
@@ -36,14 +45,13 @@
                         <td>{{$student->name}}</td>
                         <td>{{$student->roll_no}}</td>
                         <td>{{$student->class_id}}</td>
-                        <td><img src="{{asset('backend/uploads/'.$student->image)}}" alt="picture"}} style="height: 25%;"></td>
                         <td>50%</td>
                         <td>
-                            <a href="{{route('studentDetails')}}" class="btn btn-primary btn-sm"><i class="far fa-fw fa-list-alt"></i></a>
+                            <a href="{{url('/admin/student-details').'/'.$student->id}}" class="btn btn-primary btn-sm"><i class="far fa-fw fa-list-alt"></i></a>
                             &nbsp;
-                            <a href="{{route('editStudent')}}" class="btn btn-warning btn-sm"><i class="far fa-edit"></i></a>
+                            <a href="{{url('/admin/edit-student').'/'.$student->id}}" class="btn btn-warning btn-sm"><i class="far fa-edit"></i></a>
                             &nbsp;
-                            <a href="" class="btn btn-danger btn-sm"><i class="far fa-fw fa-trash-alt"></i></a>
+                            <a href="{{url('/admin/edit-student').'/'.$student->id}}" class="btn btn-danger btn-sm"><i class="far fa-fw fa-trash-alt"></i></a>
                         </td>
                     </tr>
                     @endforeach

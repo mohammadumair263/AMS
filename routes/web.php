@@ -20,14 +20,14 @@ Route::get('/admin/index', 'Backend\AdminController@index');
 Route::get('/admin/edit', 'Backend\AdminController@edit');
 Route::get('/admin/login', 'Backend\AdminController@showLoginForm');
 Route::post('/admin/login', 'Backend\AdminController@login');
-Route::post('/admin/logout', 'Admin\LoginController@logout');
+Route::get('/admin/logout', 'Backend\AdminController@logout');
 
 // Students and Attendance routes at backend side
 Route::get('/admin/students', 'Backend\StudentController@index')->name('students');
 Route::get('/admin/sdd-student', 'Backend\StudentController@create')->name('addStudent');
 Route::post('/admin/save-student', 'Backend\StudentController@store')->name('saveStudent');
-Route::get('/admin/student-details', 'Backend\StudentController@show')->name('studentDetails');
-Route::get('/admin/edit-student', 'Backend\StudentController@edit')->name('editStudent');
+Route::get('/admin/student-details/{id}', 'Backend\StudentController@show')->name('studentDetails');
+Route::get('/admin/edit-student/{id}', 'Backend\StudentController@edit')->name('editStudent');
 Route::get('/admin/attendance', 'Backend\StudentController@attendance')->name('attendance');
 Route::get('/admin/mark-attendance', 'Backend\StudentController@markAttendance')->name('markAttendance');
 

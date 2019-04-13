@@ -10,34 +10,33 @@
         </div>
         <div class="card-body">
             <form action="#" method="POST">
+                @csrf
+                <input type="hidden" value="{{$student->id}}" name="id" />
                 <br>
                 <div class="row">
                     <div class="col-md-2"></div>
-                    <div class="form-group col-sm-12 col-md-4">
-                        <input type="text" class="form-control" id="fname" placeholder="Enter First Name" name="fname">
-                    </div>
-                    <div class="form-group col-sm-12 col-md-4">
-                        <input type="text" class="form-control" id="lname" placeholder="Enter Last Name" name="lname">
+                    <div class="form-group col-sm-12 col-md-8">
+                        <input type="text" class="form-control" id="fname" placeholder="Enter Full Name" name="name" value="{{$student->name}}">
                     </div>
                     <div class="col-md-2"></div>
                 </div>
                 <div class="row">
                     <div class="col-md-2"></div>
                     <div class="form-group col-sm-12 col-md-4">
-                        <input type="text" class="form-control" id="roll_no" placeholder="Enter Roll No" name="roll_no">
+                        <input type="text" class="form-control" id="roll_no" placeholder="Enter Roll No" name="roll_no" value="{{$student->roll_no}}">
                     </div>
                     <div class="form-group col-sm-12 col-md-4">
-                        <input type="text" class="form-control" id="phone_no" placeholder="Enter Phone No" name="phone_no">
+                        <input type="text" class="form-control" id="phone_no" placeholder="Enter Phone No" name="phone_no" value="{{$student->phone}}">
                     </div>
                     <div class="col-md-2"></div>
                 </div>
                 <div class="row">
                     <div class="col-md-2"></div>
                     <div class="form-group col-sm-12 col-md-4">
-                        <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+                        <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" value="{{$student->email}}">
                     </div>
                     <div class="form-group col-sm-12 col-md-4">
-                        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+                        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd" value="{{$student->password}}">
                     </div>
                     <div class="col-md-2"></div>
                 </div>
