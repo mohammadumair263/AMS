@@ -33,9 +33,12 @@ class StudentController extends Controller
     public function create()
     {
         if(!empty(session('id')) && session('role') == 'admin'){
-            return view('backend.student.add-student');
+
+            $classes = Classes::all();
+            return view('backend.student.add-student')->with('classes', $classes);
         }
         else{
+
             return redirect('/admin/login');
         }
     }

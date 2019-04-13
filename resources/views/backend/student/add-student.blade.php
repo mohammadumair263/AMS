@@ -11,7 +11,7 @@
         <div class="card-body">
 
             <form action="{{route('saveStudent')}}" method="POST" enctype="multipart/form-data">
-                {{ csrf_field() }}
+                @csrf
                 <div class="row">
                     <div class="col-md-2"></div>
                     <div class="col-sm-12 col-md-4">
@@ -48,7 +48,7 @@
                         <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
                     </div>
                     <div class="form-group col-sm-12 col-md-4">
-                        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+                        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password">
                     </div>
                     <div class="col-md-2"></div>
                 </div>
@@ -57,9 +57,9 @@
                     <div class="form-group col-sm-12 col-md-4">
                         <label for="class">Select class:</label>
                         <select class="form-control" name="class" id="class">
-                            <option value="1">Class A</option>
-                            <option value="2">Class B</option>
-                            <option value="3">Class C</option>
+                            @foreach ($classes as $class)
+                                <option value="{{$class->id}}">{{$class->name}}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="form-group col-sm-12 col-md-4">

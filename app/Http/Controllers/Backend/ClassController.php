@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
+use App\Models\Teacher;
+use App\Models\Classes;
 use App\Http\Controllers\Controller;
 
 class ClassController extends Controller
@@ -30,7 +32,9 @@ class ClassController extends Controller
     public function create()
     {
         if(!empty(session('id')) && session('role') == 'admin'){
-            return view('backend.class.add-class');
+
+            $teachers = Teacher::all();
+            return view('backend.class.add-class')->with('teachers', $teachers);
         }
         else{
             return redirect('/admin/login');
@@ -45,7 +49,12 @@ class ClassController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $class = new Classes;
+        $class->name = $request->name;
+        $class->teacher_id = $request->teacher_id;
+        $class->save();
+
+        return redirect('/admin/classes');
     }
 
     /**

@@ -42,6 +42,7 @@ Route::get('/admin/delete-teacher/{id}', 'Backend\TeacherController@destroy')->n
 // Classes routes at backend side
 Route::get('/admin/classes', 'Backend\ClassController@index')->name('classes');
 Route::get('/admin/add-class', 'Backend\ClassController@create')->name('addClass');
+Route::post('/admin/add-class', 'Backend\ClassController@store')->name('saveClass');
 Route::get('/admin/edit-class', 'Backend\ClassController@edit')->name('editClass');
 
 // Students routes at frontend

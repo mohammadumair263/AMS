@@ -6,14 +6,15 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Add Class Form</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Add Class</h6>
         </div>
         <div class="card-body">
-            <form action="#" method="POST">
+            <form action="{{route('saveClass')}}" method="POST">
+                @csrf
                 <div class="row">
                     <div class="col-md-4"></div>
                     <div class="form-group col-sm-12 col-md-4">
-                        <input type="text" class="form-control" id="name" placeholder="Enter Class Name" name="name">
+                        <input type="text" class="form-control" id="name" placeholder="Enter Class Name" name="name" required>
                     </div>
                     <div class="col-md-4"></div>
                 </div>
@@ -22,11 +23,10 @@
                     <div class="col-md-4"></div>
                     <div class="form-group col-sm-12 col-md-4">
                         <label for="">Assign Teacher:</label>
-                        <select class="form-control" name="teacher_assign" id="">
-                            <option value="">Select</option>
-                            <option value="">Teacher A</option>
-                            <option value="">Teacher B</option>
-                            <option value="">Teacher C</option>
+                        <select class="form-control" name="teacher_id">
+                            @foreach ($teachers as $teacher)
+                                <option value="{{$teacher->id}}">{{$teacher->name}}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="col-md-4"></div>

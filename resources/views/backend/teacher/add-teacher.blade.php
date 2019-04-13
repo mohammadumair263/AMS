@@ -14,7 +14,7 @@
                 <div class="row">
                     <div class="col-md-2"></div>
                     <div class="col-sm-12 col-md-4">
-                        <img src="img/class.jpg" class="img-fluid img-thumbnail mx-auto d-block" alt="profile picture" style="height:150px; width:200px;">
+                        <img src="{{asset('img/avatar.png')}}" class="img-fluid img-thumbnail mx-auto d-block" alt="profile picture" style="height:150px; width:200px;">
                     </div>
                     <div class="form-group col-sm-12 col-md-4">
                         <br><br><br>
