@@ -18,8 +18,8 @@
 // Admin login routes
 Route::get('/admin/index', 'Backend\AdminController@index');
 Route::get('/admin/edit', 'Backend\AdminController@edit');
-Route::get('/admin/login', 'Admin\LoginController@showLoginForm')->name('admin.login');
-Route::post('/admin/login', 'Admin\LoginController@login');
+Route::get('/admin/login', 'Backend\AdminController@showLoginForm');
+Route::post('/admin/login', 'Backend\AdminController@login');
 Route::post('/admin/logout', 'Admin\LoginController@logout');
 
 // Students and Attendance routes at backend side

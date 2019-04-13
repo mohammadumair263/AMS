@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Models\Student;
+use App\Models\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -16,6 +16,23 @@ class AdminController extends Controller
     public function showLoginForm()
     {
         return view('backend.admin.login');
+    }
+
+    public function login(Request $request)
+    {
+        $email = $request->email;
+        $password = $request->password;
+
+        $user = Admin::where('email',$email)->where('password',$password)->first();
+
+        if(!empty($user)){
+            session(['id' => $user->id]);
+            session(['name' => $user->name]);
+            return redirect('/admin/index');
+        }else{
+            echo 'not login';
+        }
+        // dd($request);
     }
 
     /**
