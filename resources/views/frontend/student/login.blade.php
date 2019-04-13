@@ -27,7 +27,7 @@
                       <input type="password" name="password" required class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
                     </div>
                     <br>
-                    <input type="submit" value="Login" href="index.html" class="btn btn-primary btn-user btn-block" />
+                    <input type="submit" value="Login" href="index.html" class="btn btn-danger btn-user btn-block" />
                     <br>
                   </form>
                 </div>

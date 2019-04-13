@@ -7,13 +7,13 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Students</h1>
-        <a href="{{route('addStudent')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus fa-sm text-white-50"></i> Add Student</a>
+        <a href="{{route('addStudent')}}" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"><i class="fas fa-plus fa-sm text-white-50"></i> Add Student</a>
     </div>
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">All Students</h6>
+            <h6 class="m-0 font-weight-bold text-danger">All Students</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -47,7 +47,7 @@
                         <td>{{$student->class_id}}</td>
                         <td>50%</td>
                         <td>
-                            <a href="{{url('/admin/student-details').'/'.$student->id}}" class="btn btn-primary btn-sm"><i class="far fa-fw fa-list-alt"></i></a>
+                            <a href="{{url('/admin/student-details').'/'.$student->id}}" class="btn btn-success btn-sm"><i class="far fa-fw fa-list-alt"></i></a>
                             &nbsp;
                             <a href="{{url('/admin/edit-student').'/'.$student->id}}" class="btn btn-warning btn-sm"><i class="far fa-edit"></i></a>
                             &nbsp;

@@ -6,7 +6,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Add Class</h6>
+            <h6 class="m-0 font-weight-bold text-danger">Add Class</h6>
         </div>
         <div class="card-body">
             <form action="{{route('saveClass')}}" method="POST">
@@ -35,7 +35,7 @@
                 <div class="row">
                     <div class="col-md-7 col-sm-12"></div>
                     <div class="col-md-5 col-sm-12">
-                        <button type="submit" class="btn btn-primary"> Add </button>
+                        <button type="submit" class="btn btn-danger"> Add </button>
                     </div>
                 </div>
             </form>

@@ -12,7 +12,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Mark Attendance</h6>
+            <h6 class="m-0 font-weight-bold text-danger">Mark Attendance</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -42,7 +42,7 @@
                         <td>Teacher A</td>
                         <td>20</td>
                         <td>
-                            <a href="{{route('markAttendance')}}" class="btn btn-primary btn-sm"><i class="fas fa-fw fa-check"></i> Mark Attendance </a>
+                            <a href="{{route('markAttendance')}}" class="btn btn-danger btn-sm"><i class="fas fa-fw fa-check"></i> Mark Attendance </a>
                         </td>
                     </tr>
                     <tr>
@@ -51,7 +51,7 @@
                         <td>Teacher B</td>
                         <td>20</td>
                         <td>
-                            <a href="student-attendance.html" class="btn btn-primary btn-sm"><i class="fas fa-fw fa-check"></i> Mark Attendance </a>
+                            <a href="student-attendance.html" class="btn btn-danger btn-sm"><i class="fas fa-fw fa-check"></i> Mark Attendance </a>
                         </td>
                     </tr>
                     <tr>
@@ -60,7 +60,7 @@
                         <td>Teacher C</td>
                         <td>20</td>
                         <td>
-                            <a href="student-attendance.html" class="btn btn-primary btn-sm"><i class="fas fa-fw fa-check"></i> Mark Attendance </a>
+                            <a href="student-attendance.html" class="btn btn-danger btn-sm"><i class="fas fa-fw fa-check"></i> Mark Attendance </a>
                         </td>
                     </tr>
                     <tr>
@@ -69,7 +69,7 @@
                         <td>Teacher D</td>
                         <td>20</td>
                         <td>
-                            <a href="student-attendance.html" class="btn btn-primary btn-sm"><i class="fas fa-fw fa-check"></i> Mark Attendance </a>
+                            <a href="student-attendance.html" class="btn btn-danger btn-sm"><i class="fas fa-fw fa-check"></i> Mark Attendance </a>
                         </td>
                     </tr>
                     <tr>
@@ -78,7 +78,7 @@
                         <td>Teacher E</td>
                         <td>20</td>
                         <td>
-                            <a href="student-attendance.html" class="btn btn-primary btn-sm"><i class="fas fa-fw fa-check"></i> Mark Attendance </a>
+                            <a href="student-attendance.html" class="btn btn-danger btn-sm"><i class="fas fa-fw fa-check"></i> Mark Attendance </a>
                         </td>
                     </tr>
                     </tbody>
