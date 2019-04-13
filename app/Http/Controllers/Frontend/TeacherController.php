@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Frontend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
+use App\Models\Teacher;
 
 class TeacherController extends Controller
 {
@@ -14,11 +16,45 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        return view('frontend.teacher.index');
+        if(!empty(session('id')) && session('role') == 'teacher'){
+            return view('frontend.teacher.index');
+        }
+        else{
+            return redirect('/teacher/login');
+        }
+    }
+
+    public function showLoginForm()
+    {
+        return view('frontend.teacher.login');
+    }
+
+    public function login(Request $request)
+    {
+        $email = $request->email;
+        $password = $request->password;
+
+        $user = Teacher::where('email', $email)->where('password', $password)->first();
+        
+        if(!empty($user)){
+            session(['id' => $user->id]);
+            session(['name' => $user->name]);
+            session(['role' => 'teacher']);
+
+            return redirect('/teacher/index');
+
+        }else{
+            return redirect('/teacher/login');
+        }
     }
 
     public function attendance(){
-        return view('frontend.teacher.attendance');
+        if(!empty(session('id')) && session('role') == 'teacher'){
+            return view('frontend.teacher.attendance');
+        }
+        else{
+            return redirect('/teacher/login');
+        }
     }
     /**
      * Show the form for editing the specified resource.
@@ -28,7 +64,12 @@ class TeacherController extends Controller
      */
     public function edit()
     {
-        return view('frontend.teacher.profile');
+        if(!empty(session('id')) && session('role') == 'teacher'){
+            return view('frontend.teacher.profile');
+        }
+        else{
+            return redirect('/teacher/login');
+        }
     }
 
     /**

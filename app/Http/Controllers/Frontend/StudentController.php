@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Frontend;
 
 use Illuminate\Http\Request;
+use App\Models\Student;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 
 class StudentController extends Controller
 {
@@ -14,7 +16,35 @@ class StudentController extends Controller
      */
     public function index()
     {
-        return view('frontend.student.index');
+        if(!empty(session('id')) && session('role') == 'student'){
+            return view('frontend.student.index');
+        }
+        else{
+            return redirect('/student/login');
+        }
+    }
+
+    public function showLoginForm()
+    {
+        return view('frontend.student.login');
+    }
+
+    public function login(Request $request)
+    {
+        $email = $request->email;
+        $password = $request->password;
+
+        $user = Student::where('email', $email)->where('password', $password)->first();
+        
+        if(!empty($user)){
+            session(['id' => $user->id]);
+            session(['name' => $user->name]);
+            session(['role' => 'student']);
+            return redirect('/student/index');
+
+        }else{
+            return redirect('/student/login');
+        }
     }
 
     /**
@@ -25,7 +55,12 @@ class StudentController extends Controller
      */
     public function edit()
     {
-        return view('frontend.student.profile');
+        if(!empty(session('id')) && session('role') == 'student'){
+            return view('frontend.student.profile');
+        }
+        else{
+            return redirect('/student/login');
+        }
     }
 
     /**
