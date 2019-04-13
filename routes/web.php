@@ -11,14 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Route::get('admin/home', function () {
-
-    return view('backend.index');
-});
+// Admin login routes
+Route::get('/admin/index', 'Backend\AdminController@index');
+Route::get('/admin/edit', 'Backend\AdminController@edit');
+Route::get('/admin/login', 'Admin\LoginController@showLoginForm')->name('admin.login');
+Route::post('/admin/login', 'Admin\LoginController@login');
+Route::post('/admin/logout', 'Admin\LoginController@logout');
 
 // Students and Attendance routes at backend side
 Route::get('/admin/students', 'Backend\StudentController@index')->name('students');
