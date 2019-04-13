@@ -28,7 +28,7 @@
                 <div class="row">
                     <div class="col-md-2"></div>
                     <div class="form-group col-sm-12 col-md-8">
-                        <input type="text" class="form-control" id="fname" placeholder="Enter Full Name" name="name">
+                        <input type="text" class="form-control" id="name" placeholder="Enter Full Name" name="name">
                     </div>
                     <div class="col-md-2"></div>
                 </div>

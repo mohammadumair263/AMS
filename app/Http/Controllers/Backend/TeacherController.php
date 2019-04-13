@@ -84,7 +84,6 @@ class TeacherController extends Controller
         $teacher->email = $request->email;
         $teacher->phone = $request->phone_no;
         $teacher->password = $request->pwd;
-        dd($teacher);
         $teacher->save();
         return redirect()->back();
     }
@@ -130,7 +129,7 @@ class TeacherController extends Controller
             'name' => 'required|max:255',
             'phone_no' => 'required',
             'email' => 'required|string|email|max:255',
-            'pwd' => 'required|min:6',
+            'password' => 'required|min:6',
             'image' => 'max:1999'
         ]);
 
@@ -159,7 +158,7 @@ class TeacherController extends Controller
         $teacher->image = $fileNameToStore;
         $teacher->email = $request->email;
         $teacher->phone = $request->phone_no;
-        $teacher->password = $request->pwd;
+        $teacher->password = $request->password;
 
         $teacher->save();
         return redirect()->back();
