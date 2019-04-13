@@ -4,11 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Attendance extends Model
+class Classes extends Model
 {
     public $timestamps = false;
 
     protected $fillable = [
-        'student_id', 'teacher_id', 'date_for', 'status'
+        'teacher_id', 'nmae',
     ];
 }
