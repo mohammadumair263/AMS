@@ -55,6 +55,7 @@ class StudentController extends Controller
             'name' => 'required|max:255',
             'roll_no' => 'required',
             'phone_no' => 'required',
+            'class' => 'required',
             'email' => 'required|string|email|max:255',
             'password' => 'required|min:6',
             'image' => 'max:1999'
@@ -84,6 +85,7 @@ class StudentController extends Controller
         $student->image = $fileNameToStore;
         $student->roll_no = $request->roll_no;
         $student->email = $request->email;
+        $student->class_id = $request->class;
         $student->phone = $request->phone_no;
         $student->password = $request->password;
 
@@ -140,6 +142,7 @@ class StudentController extends Controller
             'name' => 'required|max:255',
             'roll_no' => 'required',
             'phone_no' => 'required',
+            'class' => 'required',
             'email' => 'required|string|email|max:255',
             'password' => 'required|min:6',
             'image' => 'max:1999'
@@ -170,6 +173,7 @@ class StudentController extends Controller
         $student->image = $fileNameToStore;
         $student->roll_no = $request->roll_no;
         $student->email = $request->email;
+        $student->class_id = $request->class;
         $student->phone = $request->phone_no;
         $student->password = $request->password;
 
@@ -185,7 +189,15 @@ class StudentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if(!empty(session('id')) && session('role') == 'admin'){
+            $student= Student::find($id);
+            $student->delete();
+
+            return redirect()->back();
+        }
+        else{
+            return redirect('/admin/login');
+        }
     }
 
     public function attendance()

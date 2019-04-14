@@ -15,12 +15,12 @@ class CreateStudentsTable extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('class_id')->nullable();
+            $table->integer('class_id');
             $table->string('name', 100);
             $table->string('roll_no', 100);
             $table->string('email')->unique();
             $table->string('phone', 20);
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->string('password');
             //$table->timestamps();
         });

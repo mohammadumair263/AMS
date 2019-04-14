@@ -62,7 +62,7 @@
                     <div class="form-group col-sm-12 col-md-4">
                         <label for="class">Select class:</label>
                         <select class="form-control" name="class" id="class">
-                            <option value="a">Class A</option>
+                            <option value="{{$student->class->name}}">Class A</option>
                             <option value="a">Class B</option>
                             <option value="a">Class C</option>
                         </select>

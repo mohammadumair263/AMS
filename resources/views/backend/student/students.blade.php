@@ -35,7 +35,7 @@
                         <td>{{$student->id}}</td>
                         <td>{{$student->name}}</td>
                         <td>{{$student->roll_no}}</td>
-                        <td>Class</td>
+                        <td>{{$student->class->name}}</td>
                         <td>50%</td>
                         <td><img src="{{asset('backend/uploads/'.$student->image)}}" alt="picture"}} style="height: 22%;"></td>
                         <td>
@@ -43,7 +43,7 @@
                             &nbsp;
                             <a href="{{url('/admin/edit-student').'/'.$student->id}}" class="btn btn-warning btn-sm"><i class="far fa-edit"></i></a>
                             &nbsp;
-                            <a href="{{url('/admin/edit-student').'/'.$student->id}}" class="btn btn-danger btn-sm"><i class="far fa-fw fa-trash-alt"></i></a>
+                            <a href="{{route('deleteStudent', ['id' => $student->id])}}" class="btn btn-danger btn-sm"><i class="far fa-fw fa-trash-alt"></i></a>
                         </td>
                     </tr>
                     @endforeach

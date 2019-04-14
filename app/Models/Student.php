@@ -28,4 +28,8 @@ class Student extends Authenticatable
     protected $hidden = [
         'password',
     ];
+
+    public function class(){
+        return $this->belongsTo(Classes::class);
+    }
 }
