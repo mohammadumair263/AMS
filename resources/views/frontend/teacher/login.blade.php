@@ -16,7 +16,10 @@
                   <div class="text-center">
                     <img class="mx-auto d-block img-fluid" src="{{asset('img/logo.png')}}" alt="logo" width="100px">
                     <br>
-                    <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                    <h1 class="h4 text-gray-900 mb-4">Teacher Login</h1>
+                    @if($errors->any())
+                      <p class="text-danger">{{$errors->first()}}</p>
+                    @endif
                   </div>
                   <form method="POST" action="{{url('/teacher/login')}}" class="user">
                     @csrf
@@ -30,6 +33,9 @@
                     <input type="submit" value="Login" href="index.html" class="btn btn-danger btn-user btn-block" />
                     <br>
                   </form>
+                  <a href="{{url('/admin/login')}}" class="text-danger float-left"> Admin Login</a>
+                  <a href="{{url('/student/login')}}" class="text-danger float-right"> Student Login</a>
+                  <br>
                 </div>
               </div>
             </div>

@@ -9,24 +9,13 @@
             <h6 class="m-0 font-weight-bold text-danger">Class Details</h6>
         </div>
         <div class="card-body">
-            <form action="#" method="POST">
+            <form action="{{url('/admin/edit-class')}}" method="POST">
+                @csrf
+                <input type="hidden" value="{{$class->id}}" name="id" />
                 <div class="row">
                     <div class="col-md-4"></div>
                     <div class="form-group col-sm-12 col-md-4">
-                        <input type="text" class="form-control" id="name" placeholder="Enter Class Name" name="name">
-                    </div>
-                    <div class="col-md-4"></div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4"></div>
-                    <div class="form-group col-sm-12 col-md-4">
-                        <label for="">Assign Teacher:</label>
-                        <select class="form-control" name="teacher_assign" id="">
-                            <option value="">Select</option>
-                            <option value="">Teacher A</option>
-                            <option value="">Teacher B</option>
-                            <option value="">Teacher C</option>
-                        </select>
+                        <input type="text" required class="form-control" id="name" placeholder="Enter Class Name" name="name" value="{{$class->name}}">
                     </div>
                     <div class="col-md-4"></div>
                 </div>

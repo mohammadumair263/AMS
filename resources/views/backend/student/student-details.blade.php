@@ -6,7 +6,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-danger">Student Attendance of Last Month</h6>
+            <h6 class="m-0 font-weight-bold text-danger">Student Attendance</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -32,102 +32,26 @@
                     </tr>
                     </tfoot>
                     <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Johnathan</td>
-                        <td>234</td>
-                        <td>Toddler</td>
-                        <td>10-04-2019</td>
-                        <td><span class="text-success">Present</span></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Johnathan</td>
-                        <td>234</td>
-                        <td>Toddler</td>
-                        <td>10-04-2019</td>
-                        <td><span class="text-danger">Absent</span></td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Johnathan</td>
-                        <td>234</td>
-                        <td>Toddler</td>
-                        <td>10-04-2019</td>
-                        <td><span class="text-warning">Leave</span></td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Johnathan</td>
-                        <td>234</td>
-                        <td>Toddler</td>
-                        <td>10-04-2019</td>
-                        <td><span class="text-success">Present</span></td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>Johnathan</td>
-                        <td>234</td>
-                        <td>Toddler</td>
-                        <td>10-04-2019</td>
-                        <td><span class="text-danger">Absent</span></td>
-                    </tr>
-                    <tr>
-                        <td>6</td>
-                        <td>Johnathan</td>
-                        <td>234</td>
-                        <td>Toddler</td>
-                        <td>10-04-2019</td>
-                        <td><span class="text-warning">Leave</span></td>
-                    </tr>
-                    <tr>
-                        <td>7</td>
-                        <td>Johnathan</td>
-                        <td>234</td>
-                        <td>Toddler</td>
-                        <td>10-04-2019</td>
-                        <td><span class="text-success">Present</span></td>
-                    </tr>
-                    <tr>
-                        <td>8</td>
-                        <td>Johnathan</td>
-                        <td>234</td>
-                        <td>Toddler</td>
-                        <td>10-04-2019</td>
-                        <td><span class="text-danger">Absent</span></td>
-                    </tr>
-                    <tr>
-                        <td>9</td>
-                        <td>Johnathan</td>
-                        <td>234</td>
-                        <td>Toddler</td>
-                        <td>10-04-2019</td>
-                        <td><span class="text-warning">Leave</span></td>
-                    </tr>
-                    <tr>
-                        <td>10</td>
-                        <td>Johnathan</td>
-                        <td>234</td>
-                        <td>Toddler</td>
-                        <td>10-04-2019</td>
-                        <td><span class="text-success">Present</span></td>
-                    </tr>
-                    <tr>
-                        <td>11</td>
-                        <td>Johnathan</td>
-                        <td>234</td>
-                        <td>Toddler</td>
-                        <td>10-04-2019</td>
-                        <td><span class="text-danger">Absent</span></td>
-                    </tr>
-                    <tr>
-                        <td>12</td>
-                        <td>Johnathan</td>
-                        <td>234</td>
-                        <td>Toddler</td>
-                        <td>10-04-2019</td>
-                        <td><span class="text-warning">Leave</span></td>
-                    </tr>
+                        @php
+                            $index = 1;
+                        @endphp
+                        @foreach ($attendance as $att)
+                            <tr>
+                                <td>{{$index++}}</td>
+                                <td>{{$att->name}}</td>
+                                <td>{{$att->roll_no}}</td>
+                                <td>{{$att->class_name}}</td>
+                                <td>{{$att->date_for}}</td>
+                                @if($att->status == 'present')
+                                    <td><span class="text-success">{{$att->status}}</span></td>
+                                @elseif($att->status == 'absent')
+                                    <td><span class="text-danger">{{$att->status}}</span></td>
+                                @else
+                                    <td><span class="text-warning">{{$att->status}}</span></td>
+                                @endif
+                                
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

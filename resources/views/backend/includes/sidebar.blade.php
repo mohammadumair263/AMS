@@ -3,7 +3,7 @@
 
     <!-- Sidebar - Brand -->
     <br>
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{url('/home')}}">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{url('/')}}">
         <div class="sidebar-brand-icon">
             {{--  <i class="fas fa-laugh-wink"></i>  --}}
             <img src="{{asset('/img/logo.png')}}" alt="logo" height="50" />
@@ -16,7 +16,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="{{url('/home')}}">
+        <a class="nav-link" href="{{url('/')}}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Home</span></a>
     </li>

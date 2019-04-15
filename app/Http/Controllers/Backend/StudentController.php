@@ -6,6 +6,8 @@ use App\Models\Student;
 use App\Models\Classes;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
+use App\Models\Attendance;
 
 class StudentController extends Controller
 {
@@ -17,7 +19,8 @@ class StudentController extends Controller
     public function index()
     {
         if(!empty(session('id')) && session('role') == 'admin'){
-            $student = Student::all();
+            $query = "SELECT s.id,s.name,s.roll_no,c.name AS 'class_name',s.image FROM students as s INNER JOIN classes as c ON s.class_id=c.id";
+            $student= DB::select($query);
             return view('backend.student.students')->with('students', $student);
         }
         else{
@@ -77,7 +80,7 @@ class StudentController extends Controller
         }
         else
         {
-            $fileNameToStore = 'noimage.jpeg';
+            $fileNameToStore = 'avatar.png';
         }
         $student = new Student;
 
@@ -90,7 +93,7 @@ class StudentController extends Controller
         $student->password = $request->password;
 
         $student->save();
-        return redirect()->back();
+        return redirect('/admin/students');
 
     }
 
@@ -103,8 +106,9 @@ class StudentController extends Controller
     public function show($id)
     {
         if(!empty(session('id')) && session('role') == 'admin'){
-            $student = Student::where('id', $id)->first();
-            return view('backend.student.student-details')->with('student', $student);
+            $query = "SELECT s.id,s.name,s.roll_no,c.name as 'class_name',a.date_for,a.status FROM students as s INNER JOIN classes as c ON s.class_id=c.id INNER JOIN attendances as a ON s.id=a.student_id WHERE s.id = $id ORDER BY a.date_for DESC";
+            $attendance = DB::select($query);
+            return view('backend.student.student-details')->with('attendance', $attendance);
         }
         else{
             return redirect('/admin/login');
@@ -122,7 +126,7 @@ class StudentController extends Controller
         if(!empty(session('id')) && session('role') == 'admin'){
             $student = Student::where('id', $id)->first();
             $classes = Classes::all();
-            return view('backend.student.edit-student')->with('student', $student);
+            return view('backend.student.edit-student',['student' => $student, 'classes' => $classes]);
         }
         else{
             return redirect('/admin/login');
@@ -149,7 +153,7 @@ class StudentController extends Controller
         ]);
 
         //make unique name for image, and directory path directory
-        if(($request->hasFile('image')))
+        if($request->hasFile('image') || !empty($request->hasFile('image')))
         {
             //get file with extension
             $fileNameWithExt = $request->file('image')->getClientOriginalName();
@@ -164,7 +168,7 @@ class StudentController extends Controller
         }
         else
         {
-            $fileNameToStore = 'noimage.jpeg';
+            $fileNameToStore = 'avatar.png';
         }
 
         $student = Student::where('id', $request->id)->first();
@@ -203,17 +207,57 @@ class StudentController extends Controller
     public function attendance()
     {
         if(!empty(session('id')) && session('role') == 'admin'){
-            return view('backend.student.attendance');
+            $classes = Classes::all();
+            return view('backend.student.attendance')->with('classes',$classes);
         }
         else{
             return redirect('/admin/login');
         }
     }
 
-    public function markAttendance()
+    public function markAttendance($id)
     {
         if(!empty(session('id')) && session('role') == 'admin'){
-            return view('backend.student.mark-attendance');
+
+            $student = Student::where('class_id',$id)->get();
+            return view('backend.student.mark-attendance')->with('students', $student);
+        }
+        else{
+            return redirect('/admin/login');
+        }
+    }
+
+    public function takeAttendance($id)
+    {
+        if(!empty(session('id')) && session('role') == 'admin'){
+
+            $student = Student::where('id',$id)->first();
+            return view('backend.student.take-attendance')->with('student', $student);
+        }
+        else{
+            return redirect('/admin/login');
+        }
+    }
+
+    public function insertAttendance(Request $request)
+    {
+        if(!empty(session('id')) && session('role') == 'admin'){
+
+            $att = Attendance::where('student_id',$request->student_id)->where('date_for', date('Y-m-d'))->first();
+            if(!empty($att)){
+                $att->status = $request->status;
+                $att->save();
+            }
+            else{
+                $attendance = new Attendance;
+                $attendance->student_id = $request->student_id;
+                $attendance->date_for = date('Y-m-d');
+                $attendance->teacher_id = session('id');
+                $attendance->status = $request->status;
+                $attendance->save();
+            }
+
+            return redirect('/admin/mark-attendance/'.$request->class_id);
         }
         else{
             return redirect('/admin/login');

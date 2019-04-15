@@ -11,7 +11,7 @@ class Classes extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'teacher_id', 'nmae',
+        'teacher_id', 'name',
     ];
 
     public  function student(){

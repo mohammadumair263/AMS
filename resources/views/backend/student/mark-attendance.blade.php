@@ -6,7 +6,7 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Attendance for 10-04-2019</h1>
+        <h1 class="h3 mb-0 text-gray-800">Attendance for @php echo date('d-m-Y') @endphp</h1>
     </div>
 
     <!-- DataTales Example -->
@@ -22,7 +22,7 @@
                         <th> # </th>
                         <th>Name</th>
                         <th>Roll No</th>
-                        <th>Class</th>
+                        <th>Email</th>
                         <th>Action</th>
                     </tr>
                     </thead>
@@ -31,88 +31,21 @@
                         <th> # </th>
                         <th>Name</th>
                         <th>Roll No</th>
-                        <th>Class</th>
+                        <th>Email</th>
                         <th>Action</th>
                     </tr>
                     </tfoot>
                     <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Donna Snider</td>
-                        <td>234</td>
-                        <td>Class C</td>
-                        <td>
-                            <input type="radio" name="attendance"> Present &nbsp;
-                            <input type="radio" name="attendance"> Absent &nbsp;
-                            <input type="radio" name="attendance"> Leave &nbsp;
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Donna Snider</td>
-                        <td>234</td>
-                        <td>Class C</td>
-                        <td>
-                            <input type="radio" name="attendance"> Present &nbsp;
-                            <input type="radio" name="attendance"> Absent &nbsp;
-                            <input type="radio" name="attendance"> Leave &nbsp;
-                        </td>
-                    <tr>
-                        <td>3</td>
-                        <td>Donna Snider</td>
-                        <td>234</td>
-                        <td>Class C</td>
-                        <td>
-                            <input type="radio" name="attendance"> Present &nbsp;
-                            <input type="radio" name="attendance"> Absent &nbsp;
-                            <input type="radio" name="attendance"> Leave &nbsp;
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Donna Snider</td>
-                        <td>234</td>
-                        <td>Class C</td>
-                        <td>
-                            <input type="radio" name="attendance"> Present &nbsp;
-                            <input type="radio" name="attendance"> Absent &nbsp;
-                            <input type="radio" name="attendance"> Leave &nbsp;
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>Donna Snider</td>
-                        <td>234</td>
-                        <td>Class C</td>
-                        <td>
-                            <input type="radio" name="attendance"> Present &nbsp;
-                            <input type="radio" name="attendance"> Absent &nbsp;
-                            <input type="radio" name="attendance"> Leave &nbsp;
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>6</td>
-                        <td>Donna Snider</td>
-                        <td>234</td>
-                        <td>Class C</td>
-                        <td>
-                            <input type="radio" name="attendance"> Present &nbsp;
-                            <input type="radio" name="attendance"> Absent &nbsp;
-                            <input type="radio" name="attendance"> Leave &nbsp;
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>7</td>
-                        <td>Donna Snider</td>
-                        <td>234</td>
-                        <td>Class C</td>
-                        <td>
-                            <input type="radio" name="attendance"> Present &nbsp;
-                            <input type="radio" name="attendance"> Absent &nbsp;
-                            <input type="radio" name="attendance"> Leave &nbsp;
-                        </td>
-                    </tr>
-                    </tr>
+                        @php $index = 1; @endphp
+                        @foreach ($students as $student)
+                            <tr>
+                                <td>{{$index++}}</td>
+                                <td>{{$student->name}}</td>
+                                <td>{{$student->roll_no}}</td>
+                                <td>{{$student->email}}</td>
+                                <td><a href="{{url('/admin/take-attendance'.'/'.$student->id)}}" class="btn btn-danger btn-sm">Mark</a></td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

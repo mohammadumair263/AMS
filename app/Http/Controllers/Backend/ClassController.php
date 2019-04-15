@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Teacher;
 use App\Models\Classes;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class ClassController extends Controller
 {
@@ -26,6 +27,12 @@ class ClassController extends Controller
         }
     }
 
+    public function details($id){
+        $query = "SELECT c.id,c.name as 'class_name',COUNT(s.class_id) as 'students',t.name as 'teacher_name' FROM classes as c INNER JOIN students AS s ON c.id=s.class_id INNER JOIN teachers as t ON t.class_id = c.id WHERE c.id = $id";
+        $class = DB::select($query);
+        return view('backend.class.class-details')->with('class',$class[0]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -35,8 +42,7 @@ class ClassController extends Controller
     {
         if(!empty(session('id')) && session('role') == 'admin'){
 
-            $teachers = Teacher::all();
-            return view('backend.class.add-class')->with('teachers', $teachers);
+            return view('backend.class.add-class');
         }
         else{
             return redirect('/admin/login');
@@ -53,7 +59,6 @@ class ClassController extends Controller
     {
         $class = new Classes;
         $class->name = $request->name;
-        $class->teacher_id = $request->teacher_id;
         $class->save();
 
         return redirect('/admin/classes');
@@ -76,10 +81,12 @@ class ClassController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit() // $id here
+    public function edit($id) // $id here
     {
         if(!empty(session('id')) && session('role') == 'admin'){
-            return view('backend.class.edit-class');
+
+            $class = Classes::where('id', $id)->first();
+            return view('backend.class.edit-class')->with('class', $class);
         }
         else{
             return redirect('/admin/login');
@@ -93,9 +100,18 @@ class ClassController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:255'
+        ]);
+
+        $class = Classes::where('id', $request->id)->first();
+
+        $class->name = $request->name;
+        $class->save();
+
+        return redirect('/admin/classes');
     }
 
     /**
@@ -106,6 +122,15 @@ class ClassController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if(!empty(session('id')) && session('role') == 'admin'){
+
+            $class= Classes::find($id);
+            $class->delete();
+
+            return redirect()->back();
+        }
+        else{
+            return redirect('/admin/login');
+        }
     }
 }

@@ -21,8 +21,6 @@
                     <tr>
                         <th> # </th>
                         <th>Class</th>
-                        <th>Teacher</th>
-                        <th>Students</th>
                         <th>Action</th>
                     </tr>
                     </thead>
@@ -30,57 +28,22 @@
                     <tr>
                         <th> # </th>
                         <th>Class</th>
-                        <th>Teacher</th>
-                        <th>Students</th>
                         <th>Action</th>
                     </tr>
                     </tfoot>
                     <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Class A</td>
-                        <td>Teacher A</td>
-                        <td>20</td>
-                        <td>
-                            <a href="{{route('markAttendance')}}" class="btn btn-danger btn-sm"><i class="fas fa-fw fa-check"></i> Mark Attendance </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Class B</td>
-                        <td>Teacher B</td>
-                        <td>20</td>
-                        <td>
-                            <a href="student-attendance.html" class="btn btn-danger btn-sm"><i class="fas fa-fw fa-check"></i> Mark Attendance </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Class C</td>
-                        <td>Teacher C</td>
-                        <td>20</td>
-                        <td>
-                            <a href="student-attendance.html" class="btn btn-danger btn-sm"><i class="fas fa-fw fa-check"></i> Mark Attendance </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Class D</td>
-                        <td>Teacher D</td>
-                        <td>20</td>
-                        <td>
-                            <a href="student-attendance.html" class="btn btn-danger btn-sm"><i class="fas fa-fw fa-check"></i> Mark Attendance </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>Class E</td>
-                        <td>Teacher E</td>
-                        <td>20</td>
-                        <td>
-                            <a href="student-attendance.html" class="btn btn-danger btn-sm"><i class="fas fa-fw fa-check"></i> Mark Attendance </a>
-                        </td>
-                    </tr>
+                        @php
+                            $index = 1;
+                        @endphp
+                        @foreach ($classes as $class)
+                            <tr>
+                                <td>{{$index++}}</td>
+                                <td>{{$class->name}}</td>
+                                <td>
+                                    <a href="{{url('/admin/mark-attendance').'/'.$class->id}}" class="btn btn-danger btn-sm"><i class="fas fa-fw fa-check"></i> Mark Attendance </a>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

@@ -7,15 +7,20 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-danger">Teacher Details</h6>
+            @if ($errors->any())
+                @foreach ($errors->all() as $error)
+                    <p class="text-danger">{{$error}}</p>
+                @endforeach
+            @endif
         </div>
         <div class="card-body">
-            <form action="{{route('updateTeacher',['teacher_id' => $teacher->id])}}" method="POST">
+            <form action="{{route('updateTeacher',['teacher_id' => $teacher->id])}}" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 {{ method_field('PUT') }}
                 <div class="row">
                     <div class="col-md-2"></div>
                     <div class="col-sm-12 col-md-4">
-                        <img src="img/class.jpg" class="img-fluid img-thumbnail mx-auto d-block" alt="profile picture" style="height:150px; width:200px;">
+                        <img src="{{asset('/backend/uploads'.'/'.$teacher->image)}}" class="img-fluid img-thumbnail mx-auto d-block" alt="profile picture" style="height:150px; width:200px;">
                     </div>
                     <div class="form-group col-sm-12 col-md-4">
                         <br><br><br>
@@ -45,6 +50,20 @@
                     <div class="form-group col-sm-12 col-md-4">
                         <label for="password">Password:</label>
                         <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password" value="{{$teacher->password}}">
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="form-group col-sm-12 col-md-4">
+                        <label for="class">Select class:</label>
+                        <select class="form-control" name="class" id="class">
+                            @foreach ($classes as $class)
+                                <option value="{{$class->id}}">{{$class->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group col-sm-12 col-md-4">
                     </div>
                     <div class="col-md-2"></div>
                 </div>

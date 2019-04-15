@@ -38,90 +38,26 @@
                     </tr>
                     </tfoot>
                     <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Donna Snider</td>
-                        <td>234</td>
-                        <td>Class C</td>
-                        <td>12-04-2019</td>
-                        <td>
-                            <input type="radio" name="attendance"> Present &nbsp;
-                            <input type="radio" name="attendance"> Absent &nbsp;
-                            <input type="radio" name="attendance"> Leave &nbsp;
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Donna Snider</td>
-                        <td>234</td>
-                        <td>Class C</td>
-                        <td>12-04-2019</td>
-                        <td>
-                            <input type="radio" name="attendance"> Present &nbsp;
-                            <input type="radio" name="attendance"> Absent &nbsp;
-                            <input type="radio" name="attendance"> Leave &nbsp;
-                        </td>
-                    <tr>
-                        <td>3</td>
-                        <td>Donna Snider</td>
-                        <td>234</td>
-                        <td>Class C</td>
-                        <td>12-04-2019</td>
-                        <td>
-                            <input type="radio" name="attendance"> Present &nbsp;
-                            <input type="radio" name="attendance"> Absent &nbsp;
-                            <input type="radio" name="attendance"> Leave &nbsp;
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Donna Snider</td>
-                        <td>234</td>
-                        <td>Class C</td>
-                        <td>12-04-2019</td>
-                        <td>
-                            <input type="radio" name="attendance"> Present &nbsp;
-                            <input type="radio" name="attendance"> Absent &nbsp;
-                            <input type="radio" name="attendance"> Leave &nbsp;
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>Donna Snider</td>
-                        <td>234</td>
-                        <td>Class C</td>
-                        <td>12-04-2019</td>
-                        <td>
-                            <input type="radio" name="attendance"> Present &nbsp;
-                            <input type="radio" name="attendance"> Absent &nbsp;
-                            <input type="radio" name="attendance"> Leave &nbsp;
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>6</td>
-                        <td>Donna Snider</td>
-                        <td>234</td>
-                        <td>Class C</td>
-                        <td>12-04-2019</td>
-                        <td>
-                            <input type="radio" name="attendance"> Present &nbsp;
-                            <input type="radio" name="attendance"> Absent &nbsp;
-                            <input type="radio" name="attendance"> Leave &nbsp;
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>7</td>
-                        <td>Donna Snider</td>
-                        <td>234</td>
-                        <td>Class C</td>
-                        <td>12-04-2019</td>
-                        <td>
-                            <input type="radio" name="attendance"> Present &nbsp;
-                            <input type="radio" name="attendance"> Absent &nbsp;
-                            <input type="radio" name="attendance"> Leave &nbsp;
-                        </td>
-                    </tr>
-                    </tr>
+                        @php
+                            $index = 1;
+                        @endphp
+                        @foreach ($attendance as $att)
+                            <tr>
+                                <td>{{$index++}}</td>
+                                <td>{{$att->name}}</td>
+                                <td>{{$att->roll_no}}</td>
+                                <td>{{$att->class_name}}</td>
+                                <td>{{$att->date_for}}</td>
+                                @if($att->status == 'present')
+                                    <td><span class="text-success">{{$att->status}}</span></td>
+                                @elseif($att->status == 'absent')
+                                    <td><span class="text-danger">{{$att->status}}</span></td>
+                                @else
+                                    <td><span class="text-warning">{{$att->status}}</span></td>
+                                @endif
+                                
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

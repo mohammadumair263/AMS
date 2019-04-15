@@ -19,17 +19,6 @@
             <!-- Dropdown - User Information -->
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 @if (session('role') == 'admin')
-                    <a class="dropdown-item" href="{{url('/admin/profile')}}">
-                @elseif (session('role') == 'student')
-                    <a class="dropdown-item" href="{{url('/student/profile')}}">
-                @elseif (session('role') == 'teacher')
-                    <a class="dropdown-item" href="{{url('/teacher/profile')}}">
-                @endif
-                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Profile
-                </a>
-                <div class="dropdown-divider"></div>
-                @if (session('role') == 'admin')
                     <a class="dropdown-item" href="{{url('/admin/logout')}}">
                 @elseif (session('role') == 'student')
                     <a class="dropdown-item" href="{{url('/student/logout')}}">

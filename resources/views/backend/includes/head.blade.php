@@ -4,7 +4,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>AMS - Home</title>
+<title>AMS</title>
 
 <!-- Custom fonts for this template-->
 <link rel="stylesheet" type="text/css" href="{{asset('backend/css/all.min.css')}}">

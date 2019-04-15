@@ -6,18 +6,17 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 use App\Models\Teacher;
+use App\Models\Student;
+use App\Models\Attendance;
 
 class TeacherController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
+    public function index(){
         if(!empty(session('id')) && session('role') == 'teacher'){
-            return view('frontend.teacher.index');
+            $teacher = Teacher::where('id',session('id'))->first();
+            $students = Student::where('class_id',$teacher->class_id)->get();
+
+            return view('frontend.teacher.attendance')->with('students',$students);
         }
         else{
             return redirect('/teacher/login');
@@ -44,7 +43,7 @@ class TeacherController extends Controller
             return redirect('/teacher/index');
 
         }else{
-            return redirect('/teacher/login');
+            return redirect('/teacher/login')->withErrors(['Wrong username or password.']);
         }
     }
 
@@ -53,42 +52,41 @@ class TeacherController extends Controller
         return redirect('/teacher/login');
     }
 
-    public function attendance(){
-        if(!empty(session('id')) && session('role') == 'teacher'){
-            return view('frontend.teacher.attendance');
-        }
-        else{
-            return redirect('/teacher/login');
-        }
-    }
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit()
+    public function takeAttendance($id)
     {
         if(!empty(session('id')) && session('role') == 'teacher'){
 
-            $teacher = Teacher::where('id',session('id'))->first();
-            return view('frontend.teacher.profile')->with('teacher',$teacher);
+            $student = Student::where('id',$id)->first();
+            return view('frontend.teacher.take-attendance')->with('student', $student);
         }
         else{
             return redirect('/teacher/login');
         }
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function insertAttendance(Request $request)
     {
-        //
+        if(!empty(session('id')) && session('role') == 'teacher'){
+
+            $att = Attendance::where('student_id',$request->student_id)->where('date_for', date('Y-m-d'))->first();
+            if(!empty($att)){
+                $att->status = $request->status;
+                $att->save();
+            }
+            else{
+                $attendance = new Attendance;
+                $attendance->student_id = $request->student_id;
+                $attendance->date_for = date('Y-m-d');
+                $attendance->teacher_id = session('id');
+                $attendance->status = $request->status;
+                $attendance->save();
+            }
+
+            return redirect('/teacher/index');
+        }
+        else{
+            return redirect('/teacher/login');
+        }
     }
 
 }

@@ -20,9 +20,10 @@ class AdminController extends Controller
             $students = Student::all();
 
             return view('backend.index',[
-                'teachers'=> $teachers->count(),
-                'classes'=> $classes->count(),
-                'students'=> $students->count()
+                'teachers_count'=> $teachers->count(),
+                'classes_count'=> $classes->count(),
+                'students_count'=> $students->count(),
+                'classes' => $classes
                 ]);
         }
         else{
@@ -46,11 +47,11 @@ class AdminController extends Controller
             session(['id' => $user->id]);
             session(['name' => $user->name]);
             session(['role' => 'admin']);
+
             return redirect('/admin/index');
         }else{
-            echo 'not login';
+            return redirect('/admin/login')->withErrors(['Wrong username or password.']);
         }
-        // dd($request);
     }
 
     public function logout(){

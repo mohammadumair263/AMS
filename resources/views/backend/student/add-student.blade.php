@@ -7,6 +7,11 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-danger">Add Student Form</h6>
+            @if ($errors->any())
+                @foreach ($errors->all() as $error)
+                    <p class="text-danger">{{$error}}</p>
+                @endforeach
+            @endif
         </div>
         <div class="card-body">
 

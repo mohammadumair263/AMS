@@ -19,26 +19,30 @@
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
-                    <tr>
-                        <th> # </th>
-                        <th>Name</th>
-                        <th>Teacher</th>
-                        <th>Students</th>
-                        <th>Attendance</th>
-                        <th>Action</th>
-                    </tr>
+                        <tr>
+                            <th> # </th>
+                            <th>Name</th>
+                            <th>Action</th>
+                        </tr>
                     </thead>
+                    <tfoot>
+                        <tr>
+                            <th> # </th>
+                            <th>Name</th>
+                            <th>Action</th>
+                        </tr>
+                    </tfoot>
+                    @php $index=1; @endphp
                     @foreach($classes as $class)
                     <tr>
-                        <td>{{$class->id}}</td>
+                        <td>{{$index++}}</td>
                         <td>{{$class->name}}</td>
-                        <td>{{$class->name}}</td>
-                        <td>10</td>
-                        <td>80%</td>
                         <td>
-                            <a href="{{route('editClass')}}" class="btn btn-warning btn-sm"><i class="far fa-edit"></i></a>
+                            <a href="{{url('/admin/class-details').'/'.$class->id}}" class="btn btn-success btn-sm"><i class="far fa-list-alt"></i></a>
                             &nbsp;
-                            <a href="" class="btn btn-danger btn-sm"><i class="far fa-fw fa-trash-alt"></i></a>
+                            <a href="{{url('/admin/edit-class').'/'.$class->id}}" class="btn btn-warning btn-sm"><i class="far fa-edit"></i></a>
+                            &nbsp;
+                            <a href="{{url('/admin/delete-class').'/'.$class->id}}" class="btn btn-danger btn-sm"><i class="far fa-fw fa-trash-alt"></i></a>
                         </td>
                     </tr>
                     @endforeach

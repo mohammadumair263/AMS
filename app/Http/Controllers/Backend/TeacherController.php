@@ -7,6 +7,7 @@ use App\Models\Teacher;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
 
 class TeacherController extends Controller
 {
@@ -20,7 +21,8 @@ class TeacherController extends Controller
     {
         if(!empty(session('id')) && session('role') == 'admin'){
             
-            $teacher = Teacher::all();
+            $query = "SELECT t.name,t.id,t.email,t.phone,t.image,c.name as 'class_name' FROM teachers as t INNER JOIN classes as c ON t.class_id=c.id";
+            $teacher = DB::select($query);
             return view('backend.teacher.teachers')->with('teachers', $teacher);
         }
         else{
@@ -78,7 +80,7 @@ class TeacherController extends Controller
         }
         else
         {
-            $fileNameToStore = 'noimage.jpeg';
+            $fileNameToStore = 'avatar.png';
         }
 
         $teacher = new Teacher;
@@ -90,7 +92,7 @@ class TeacherController extends Controller
         $teacher->class_id = $request->class;
         $teacher->password = $request->pwd;
         $teacher->save();
-        return redirect()->back();
+        return redirect('/admin/teachers');
     }
 
     /**
@@ -114,7 +116,8 @@ class TeacherController extends Controller
     {
         if(!empty(session('id')) && session('role') == 'admin'){
             $teacher = Teacher::find($id);
-            return view('backend.teacher.edit-teacher')->with('teacher', $teacher);
+            $classes = Classes::all();
+            return view('backend.teacher.edit-teacher',['teacher' => $teacher, 'classes'=> $classes]);
         }
         else{
             return redirect('/admin/login');
@@ -155,7 +158,7 @@ class TeacherController extends Controller
         }
         else
         {
-            $fileNameToStore = 'noimage.jpeg';
+            $fileNameToStore = 'avatar.png';
         }
 
         $teacher = Teacher::where('id', $request->id)->first();

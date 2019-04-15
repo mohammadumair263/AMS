@@ -29,6 +29,17 @@
                             <th>Action</th>
                         </tr>
                     </thead>
+                    <tfoot>
+                        <tr>
+                            <th> # </th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Class</th>
+                            <th>Image</th>
+                            <th>Action</th>
+                        </tr>
+                    </tfoot>
                     <tbody>
                     @foreach($teachers as $teacher)
                     <tr>
@@ -36,8 +47,8 @@
                         <td>{{$teacher->name}}</td>
                         <td>{{$teacher->email}}</td>
                         <td>{{$teacher->phone}}</td>
-                        <td>{{$teacher->class->name}}</td>
-                        <td><img src="{{asset('backend/uploads/'.$teacher->image)}}" alt="picture"}} style="height: 22%;"></td>
+                        <td>{{$teacher->class_name}}</td>
+                        <td><img src="{{asset('backend/uploads/'.$teacher->image)}}" alt="picture"}} height="50px"></td>
                         <td>
                             <a href="{{route('editTeacher',['id' => $teacher->id])}}" class="btn btn-warning btn-sm"><i class="far fa-fw fa-edit"></i></a>
                             &nbsp;

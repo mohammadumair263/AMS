@@ -7,6 +7,11 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-danger">Add Teacher Form</h6>
+            @if ($errors->any())
+                @foreach ($errors->all() as $error)
+                    <p class="text-danger">{{$error}}</p>
+                @endforeach
+            @endif
         </div>
         <div class="card-body">
             <form action="{{route('saveTeacher')}}" method="POST" enctype="multipart/form-data">
@@ -26,20 +31,20 @@
                 <div class="row">
                     <div class="col-md-2"></div>
                     <div class="form-group col-sm-12 col-md-4">
-                        <input type="text" class="form-control" id="fname" placeholder="Enter Full Name" name="name">
+                        <input type="text" required class="form-control" id="fname" placeholder="Enter Full Name" name="name">
                     </div>
                     <div class="form-group col-sm-12 col-md-4">
-                        <input type="text" class="form-control" id="phone_no" placeholder="Enter Phone No" name="phone_no">
+                        <input type="text" required class="form-control" id="phone_no" placeholder="Enter Phone No" name="phone_no">
                     </div>
                     <div class="col-md-2"></div>
                 </div>
                 <div class="row">
                     <div class="col-md-2"></div>
                     <div class="form-group col-sm-12 col-md-4">
-                        <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+                        <input type="email" required class="form-control" id="email" placeholder="Enter email" name="email">
                     </div>
                     <div class="form-group col-sm-12 col-md-4">
-                        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+                        <input type="password" required class="form-control" id="pwd" placeholder="Enter password" name="pwd">
                     </div>
                     <div class="col-md-2"></div>
                 </div>
